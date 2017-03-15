@@ -128,15 +128,24 @@ transform: translateY(45%);
     height: 32px;  
     width: 32px;
 }
-tr td:nth-child(5) button:nth-child(1) {
-    background-color: #0098c4;
-    color: white;
+tr td:nth-child(5) button {
+     background-image: -moz-linear-gradient( 90deg, rgb(89,152,24) 0%, rgb(136,197,73) 100%);
+    background-image: -webkit-linear-gradient( 90deg, rgb(89,152,24) 0%, rgb(136,197,73) 100%);
+    background-image: -ms-linear-gradient( 90deg, rgb(89,152,24) 0%, rgb(136,197,73) 100%);
+      border-style: solid;
+  border-width: 1px;
+  border-color: rgb(136, 197, 73);
+  color: white;
+  
 }
+/*Temp for show*/
+tr td:nth-child(5) button:active:after {
+  
+  background-image: -moz-linear-gradient( 90deg, rgb(159,35,22) 0%, rgb(248,31,20) 100%);
+  background-image: -webkit-linear-gradient( 90deg, rgb(159,35,22) 0%, rgb(248,31,20) 100%);
+  background-image: -ms-linear-gradient( 90deg, rgb(159,35,22) 0%, rgb(248,31,20) 100%);
+ }
 
-tr td:nth-child(5) button:nth-child(2) {
-    background-color: #737171;
-    color: white;
-}
 /* Portrait layout (default) */
 .app {
     background:url(../img/logo.png) no-repeat center top; /* 170px x 200px */
