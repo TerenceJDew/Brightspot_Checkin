@@ -60,9 +60,13 @@
                     <!--Top Nav Area-->
                       <div class="dropdown">
                           <img id="logo" src="img/logo.png">
-                       <p id="env-tag">Enviornment - Live </p>
-                           <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">NBCUniversal  Event</button>
-                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                       
+                           <select  name="Events">
+                               <option value="volvo">Volvo</option>
+                               <option value="saab">Saab</option>
+                               <option value="fiat">Fiat</option>
+                          </select>
+                          <div class="drop_list dropdown-menu" aria-labelledby="dropdownMenuButton">
                               <a class="dropdown-item" href="#">Action</a>
                               <a class="dropdown-item" href="#">Another action</a>
                               <a class="dropdown-item" href="#">Something else here</a>
@@ -80,13 +84,15 @@
             <p>All Attendees: 3500</p>
     </div>
     
-<div class="input-group search">
-    
-  <input type="text" class="form-control" placeholder="Recipient's username" aria-describedby="basic-addon2">
-    
-  <span class="input-group-addon" id="basic-addon2"></span>
-    
+    <div id="search_cont">
+    <div class="input-group search">
+        <input type="text" class="form-control" placeholder="Recipient's username" aria-describedby="basic-addon2">
+        <span class="input-group-addon" id="basic-addon2"></span>
+        </div>
+      <button class="search_button btn">+ Add New Attendee</button>  
+        
     </div>
+
                </div>
                     <!--Search Area End-->
    
@@ -108,7 +114,7 @@
     <td>tambra@brightspotcreative.com</td>
     <td>Empty Field</td>
     <td>
-        <button class="btn">Check-In</button>
+        <button onclick="colorchange" class="btn">Check-In</button>
         
      </td>
     <td>
@@ -120,33 +126,35 @@
     <td>charlie@brightspotcreative.com</td>
     <td>Empty Field</td>
     <td>
-        <button class="btn">Check-In</button>
+        <button onclick="colorchange" class="btn">Check-In</button>
         
      </td>
     <td>
         <button class="close-image"><img src="img/plus_sign.png"></button>
              </td>
   </tr>
-         <tr>
-    <td>Chiedu </td>
+    
+    <tr>
+    <td><p>Chiedu</p> </td>
     <td>Okpala</td>
     <td>chie@brightspotcreative.com</td>
     <td>Empty Field</td>
     <td>
-        <button class="btn">Check-In</button>
+        <button onclick="colorchange" class="btn">Check-In</button>
         
      </td>
     <td>
         <button class="close-image"><img src="img/plus_sign.png"></button>
              </td>
   </tr>
+    
     <tr>
     <td>Terence </td>
     <td>Dew</td>
     <td>terence@brightspotcreative.com</td>
     <td>Empty Field</td>
      <td>
-        <button class="btn">Check-In</button>
+        <button onclick="colorchange" class="btn">Check-In</button>
         
      </td>
     <td><button class="close-image"><img src="img/plus_sign.png"></button></td>
@@ -163,6 +171,20 @@
     <script type="text/javascript" src="js/index.js"></script>
     <script type="text/javascript">
         app.initialize();
+
+function colorchange(id) {
+
+    var background = document.getElementsByClassName("check-in_button").style.backgroundImage;
+    
+    
+    if (background == "linear-gradient( 90deg, rgb(159,35,22) 0%, rgb(248,31,20) 100%)") {
+        document.getElementsByClassName("check-in_button").style.backgroundImage = "linear-gradient( 90deg, rgb(89,152,24) 0%, rgb(136,197,73) 100%)";
+    } else {
+        document.getElementsByClassName("check-in_button") = "linear-gradient( 90deg, rgb(159,35,22) 0%, rgb(248,31,20) 100%)";
+    }
+
+}
+
     </script>
 </body>
 
