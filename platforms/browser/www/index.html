@@ -40,637 +40,82 @@
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="phonegap.js"></script>
+    
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/jquery/jquery.mobile-1.4.5.js"></script>
+    <link rel="stylesheet" href="js/jquery/jquery.mobile-1.4.5.css">
+    
     <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="css/index.css" />
-    
-    
-   
+    <link rel="stylesheet" type="text/css" href="css/login.css" />
+
 
     <title>BrightSpot Events</title>
 </head>
 
 <body>
-   <div class="container-fluid">
-       <div class="row">
-           <div class="col-xs-12">
-                 <div id="top-nav">      
-                     
-                    <!--Top Nav Area-->
-                      <div class="dropdown">
-                          <img id="logo" src="img/logo.png">
-                       <p id="env-tag">Enviornment - Live </p>
-                           <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown button</button>
-                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                              <a class="dropdown-item" href="#">Action</a>
-                              <a class="dropdown-item" href="#">Another action</a>
-                              <a class="dropdown-item" href="#">Something else here</a>
-                          </div>
-                      </div>
   
-</div>
-                    <!--Top Nav Area End-->
-                    <!--Search Area-->
-<div id="search-summary">
-    <div id="summary-cont">
-            <p>Summary:</p>
-            <p>Checked-in: 12345</p>
-            <p>Registered: 500</p>
-            <p>All Attendees: 3500</p>
-    </div>
+    <div class="container">
     
-<div class="input-group search">
-    
-  <input type="text" class="form-control" placeholder="Recipient's username" aria-describedby="basic-addon2">
-    
-  <span class="input-group-addon" id="basic-addon2"></span>
-    
-    </div>
-               </div>
-                    <!--Search Area End-->
+        <img class="background" src="img/background.png">
+        
+        <div class="login_form">
+<form method="POST">
+
+  <div class="form_container">
+      <img class="login_logo" src="img/login_logo.png">
+
    
-<div class="table-responsive">
+      <input type="text" placeholder="Enter Organization Code" name="orgcode" required>
+      
+      
+    <button data-role="button" class="login-btn" data-rel="external" type="submit">Select</button>
 
-<table class="table">
-  <tr>
-    <th>First Name</th>
-    <th>Last Name</th>
-    <th>Email</th>
-    <th>Client Choice</th>
-    <th>Actions</th>
-  </tr>
-
-<tr>
-    <td>Tambra </td>
-    <td>Bonatti</td>
-    <td>tambra@brightspotcreative.com</td>
-    <td>Empty Field</td>
-    <td>
-        <button class="btn">Edit</button>
-        <button class="btn">View</button>
-        <button class="close-image"><img src="img/trash_recyclebin_empty_closed.png"></button>
-     </td>
-  </tr>
-         <tr>
-    <td>Charlie </td>
-    <td>Callahan</td>
-    <td>charlie@brightspotcreative.com</td>
-    <td>Empty Field</td>
-    <td>
-        <div>
-        <button class="btn">Edit</button>
-        <button class="btn">View</button>
-        <button class="close-image"><img src="img/trash_recyclebin_empty_closed.png"></button>
-        </div>
-     </td>
-  </tr>
-         <tr>
-    <td>Chiedu </td>
-    <td>Okpala</td>
-    <td>chie@brightspotcreative.com</td>
-    <td>Empty Field</td>
-     <td>
-        <button class="btn">Edit</button>
-        <button class="btn">View</button>
-        <button class="close-image"><img src="img/trash_recyclebin_empty_closed.png"></button>
-     </td>
-  </tr>
-    <tr>
-    <td>Terence </td>
-    <td>Dew</td>
-    <td>terence@brightspotcreative.com</td>
-    <td>Empty Field</td>
-     <td>
-        <button class="btn">Edit</button>
-        <button class="btn">View</button>
-        <button class="close-image"><img src="img/trash_recyclebin_empty_closed.png"></button>
-     </td>
-  </tr>
-         <tr>
-    <td>Tambra </td>
-    <td>Bonatti</td>
-    <td>tambra@brightspotcreative.com</td>
-    <td>Empty Field</td>
-     <td>
-        <button class="btn">Edit</button>
-        <button class="btn">View</button>
-        <button class="close-image"><img src="img/trash_recyclebin_empty_closed.png"></button>
-     </td>
-  </tr>
-         <tr>
-    <td>Charlie </td>
-    <td>Callahan</td>
-    <td>charlie@brightspotcreative.com</td>
-    <td>Empty Field</td>
-     <td>
-        <button class="btn">Edit</button>
-        <button class="btn">View</button>
-        <button class="close-image"><img src="img/trash_recyclebin_empty_closed.png"></button>
-     </td>
-  </tr>
-         <tr>
-    <td>Chiedu </td>
-    <td>Okpala</td>
-    <td>chie@brightspotcreative.com</td>
-    <td>Empty Field</td>
-     <td>
-        <button class="btn">Edit</button>
-        <button class="btn">View</button>
-        <button class="close-image"><img src="img/trash_recyclebin_empty_closed.png"></button>
-     </td>
-  </tr>
-        <tr>
-    <td>Terence </td>
-    <td>Dew</td>
-    <td>terence@brightspotcreative.com</td>
-    <td>Empty Field</td>
-     <td>
-        <button class="btn">Edit</button>
-        <button class="btn">View</button>
-        <button class="close-image"><img src="img/trash_recyclebin_empty_closed.png"></button>
-     </td>
-  </tr>
-         <tr>
-    <td>Tambra </td>
-    <td>Bonatti</td>
-    <td>tambra@brightspotcreative.com</td>
-    <td>Empty Field</td>
-     <td>
-        <button class="btn">Edit</button>
-        <button class="btn">View</button>
-        <button class="close-image"><img src="img/trash_recyclebin_empty_closed.png"></button>
-     </td>
-  </tr>
-         <tr>
-    <td>Charlie </td>
-    <td>Callahan</td>
-    <td>charlie@brightspotcreative.com</td>
-    <td>Empty Field</td>
-     <td>
-        <button class="btn">Edit</button>
-        <button class="btn">View</button>
-        <button class="close-image"><img src="img/trash_recyclebin_empty_closed.png"></button>
-     </td>
-  </tr>
-         <tr>
-    <td>Chiedu </td>
-    <td>Okpala</td>
-    <td>chie@brightspotcreative.com</td>
-    <td>Empty Field</td>
-     <td>
-        <button class="btn">Edit</button>
-        <button class="btn">View</button>
-        <button class="close-image"><img src="img/trash_recyclebin_empty_closed.png"></button>
-     </td>
-  </tr>
-        <tr>
-    <td>Terence </td>
-    <td>Dew</td>
-    <td>terence@brightspotcreative.com</td>
-    <td>Empty Field</td>
-     <td>
-        <button class="btn">Edit</button>
-        <button class="btn">View</button>
-        <button class="close-image"><img src="img/trash_recyclebin_empty_closed.png"></button>
-     </td>
-  </tr>
-         <tr>
-    <td>Tambra </td>
-    <td>Bonatti</td>
-    <td>tambra@brightspotcreative.com</td>
-    <td>Empty Field</td>
-     <td>
-        <button class="btn">Edit</button>
-        <button class="btn">View</button>
-        <button class="close-image"><img src="img/trash_recyclebin_empty_closed.png"></button>
-     </td>
-  </tr>
-         <tr>
-    <td>Charlie </td>
-    <td>Callahan</td>
-    <td>charlie@brightspotcreative.com</td>
-    <td>Empty Field</td>
-     <td>
-        <button class="btn">Edit</button>
-        <button class="btn">View</button>
-        <button class="close-image"><img src="img/trash_recyclebin_empty_closed.png"></button>
-     </td>
-  </tr>
-         <tr>
-    <td>Chiedu </td>
-    <td>Okpala</td>
-    <td>chie@brightspotcreative.com</td>
-    <td>Empty Field</td>
-     <td>
-        <button class="btn">Edit</button>
-        <button class="btn">View</button>
-        <button class="close-image"><img src="img/trash_recyclebin_empty_closed.png"></button>
-     </td>
-  </tr>
-        <tr>
-    <td>Terence </td>
-    <td>Dew</td>
-    <td>terence@brightspotcreative.com</td>
-    <td>Empty Field</td>
-     <td>
-        <button class="btn">Edit</button>
-        <button class="btn">View</button>
-        <button class="close-image"><img src="img/trash_recyclebin_empty_closed.png"></button>
-     </td>
-  </tr>
-         <tr>
-    <td>Tambra </td>
-    <td>Bonatti</td>
-    <td>tambra@brightspotcreative.com</td>
-    <td>Empty Field</td>
-     <td>
-        <button class="btn">Edit</button>
-        <button class="btn">View</button>
-        <button class="close-image"><img src="img/trash_recyclebin_empty_closed.png"></button>
-     </td>
-  </tr>
-         <tr>
-    <td>Charlie </td>
-    <td>Callahan</td>
-    <td>charlie@brightspotcreative.com</td>
-    <td>Empty Field</td>
-     <td>
-        <button class="btn">Edit</button>
-        <button class="btn">View</button>
-        <button class="close-image"><img src="img/trash_recyclebin_empty_closed.png"></button>
-     </td>
-  </tr>
-         <tr>
-    <td>Chiedu </td>
-    <td>Okpala</td>
-    <td>chie@brightspotcreative.com</td>
-    <td>Empty Field</td>
-     <td>
-        <button class="btn">Edit</button>
-        <button class="btn">View</button>
-        <button class="close-image"><img src="img/trash_recyclebin_empty_closed.png"></button>
-     </td>
-  </tr>
-        <tr>
-    <td>Terence </td>
-    <td>Dew</td>
-    <td>terence@brightspotcreative.com</td>
-    <td>Empty Field</td>
-     <td>
-        <button class="btn">Edit</button>
-        <button class="btn">View</button>
-        <button class="close-image"><img src="img/trash_recyclebin_empty_closed.png"></button>
-     </td>
-  </tr>
-         <tr>
-    <td>Tambra </td>
-    <td>Bonatti</td>
-    <td>tambra@brightspotcreative.com</td>
-    <td>Empty Field</td>
-    <td>
-        <button class="btn">Edit</button>
-        <button class="btn">View</button>
-        <button class="close-image"><img src="img/trash_recyclebin_empty_closed.png"></button>
-     </td>
-  </tr>
-         <tr>
-    <td>Charlie </td>
-    <td>Callahan</td>
-    <td>charlie@brightspotcreative.com</td>
-    <td>Empty Field</td>
-    <td>
-        <button class="btn">Edit</button>
-        <button class="btn">View</button>
-        <button class="close-image"><img src="img/trash_recyclebin_empty_closed.png"></button>
-     </td>
-  </tr>
-         <tr>
-    <td>Chiedu </td>
-    <td>Okpala</td>
-    <td>chie@brightspotcreative.com</td>
-    <td>Empty Field</td>
-    <td>
-        <button class="btn">Edit</button>
-        <button class="btn">View</button>
-        <button class="close-image"><img src="img/trash_recyclebin_empty_closed.png"></button>
-     </td>
-  </tr>
-        <tr>
-    <td>Terence </td>
-    <td>Dew</td>
-    <td>terence@brightspotcreative.com</td>
-    <td>Empty Field</td>
-    <td>
-        <button class="btn">Edit</button>
-        <button class="btn">View</button>
-        <button class="close-image"><img src="img/trash_recyclebin_empty_closed.png"></button>
-     </td>
-  </tr>
-         <tr>
-    <td>Tambra </td>
-    <td>Bonatti</td>
-    <td>tambra@brightspotcreative.com</td>
-    <td>Empty Field</td>
-    <td>
-        <button class="btn">Edit</button>
-        <button class="btn">View</button>
-        <button class="close-image"><img src="img/trash_recyclebin_empty_closed.png"></button>
-     </td>
-  </tr>
-         <tr>
-    <td>Charlie </td>
-    <td>Callahan</td>
-    <td>charlie@brightspotcreative.com</td>
-    <td>Empty Field</td>
-    <td>
-        <button class="btn">Edit</button>
-        <button class="btn">View</button>
-        <button class="close-image"><img src="img/trash_recyclebin_empty_closed.png"></button>
-     </td>
-  </tr>
-         <tr>
-    <td>Chiedu </td>
-    <td>Okpala</td>
-    <td>chie@brightspotcreative.com</td>
-    <td>Empty Field</td>
-    <td>
-        <button class="btn">Edit</button>
-        <button class="btn">View</button>
-        <button class="close-image"><img src="img/trash_recyclebin_empty_closed.png"></button>
-     </td>
-  </tr>
-        <tr>
-    <td>Terence </td>
-    <td>Dew</td>
-    <td>terence@brightspotcreative.com</td>
-    <td>Empty Field</td>
-    <td>
-        <button class="btn">Edit</button>
-        <button class="btn">View</button>
-        <button class="close-image"><img src="img/trash_recyclebin_empty_closed.png"></button>
-     </td>
-  </tr>
-         <tr>
-    <td>Tambra </td>
-    <td>Bonatti</td>
-    <td>tambra@brightspotcreative.com</td>
-    <td>Empty Field</td>
-    <td>
-        <button class="btn">Edit</button>
-        <button class="btn">View</button>
-        <button class="close-image"><img src="img/trash_recyclebin_empty_closed.png"></button>
-     </td>
-  </tr>
-         <tr>
-    <td>Charlie </td>
-    <td>Callahan</td>
-    <td>charlie@brightspotcreative.com</td>
-    <td>Empty Field</td>
-    <td>
-        <button class="btn">Edit</button>
-        <button class="btn">View</button>
-        <button class="close-image"><img src="img/trash_recyclebin_empty_closed.png"></button>
-     </td>
-  </tr>
-         <tr>
-    <td>Chiedu </td>
-    <td>Okpala</td>
-    <td>chie@brightspotcreative.com</td>
-    <td>Empty Field</td>
-    <td>
-        <button class="btn">Edit</button>
-        <button class="btn">View</button>
-        <button class="close-image"><img src="img/trash_recyclebin_empty_closed.png"></button>
-     </td>
-  </tr>
-        <tr>
-    <td>Terence </td>
-    <td>Dew</td>
-    <td>terence@brightspotcreative.com</td>
-    <td>Empty Field</td>
-    <td>
-        <button class="btn">Edit</button>
-        <button class="btn">View</button>
-        <button class="close-image"><img src="img/trash_recyclebin_empty_closed.png"></button>
-     </td>
-  </tr>
-         <tr>
-    <td>Tambra </td>
-    <td>Bonatti</td>
-    <td>tambra@brightspotcreative.com</td>
-    <td>Empty Field</td>
-    <td>
-        <button class="btn">Edit</button>
-        <button class="btn">View</button>
-        <button class="close-image"><img src="img/trash_recyclebin_empty_closed.png"></button>
-     </td>
-  </tr>
-         <tr>
-    <td>Charlie </td>
-    <td>Callahan</td>
-    <td>charlie@brightspotcreative.com</td>
-    <td>Empty Field</td>
-    <td>
-        <button class="btn">Edit</button>
-        <button class="btn">View</button>
-        <button class="close-image"><img src="img/trash_recyclebin_empty_closed.png"></button>
-     </td>
-  </tr>
-         <tr>
-    <td>Chiedu </td>
-    <td>Okpala</td>
-    <td>chie@brightspotcreative.com</td>
-    <td>Empty Field</td>
-    <td>
-        <button class="btn">Edit</button>
-        <button class="btn">View</button>
-        <button class="close-image"><img src="img/trash_recyclebin_empty_closed.png"></button>
-     </td>
-  </tr>
-        <tr>
-    <td>Terence </td>
-    <td>Dew</td>
-    <td>terence@brightspotcreative.com</td>
-    <td>Empty Field</td>
-    <td>
-        <button class="btn">Edit</button>
-        <button class="btn">View</button>
-        <button class="close-image"><img src="img/trash_recyclebin_empty_closed.png"></button>
-     </td>
-  </tr>
-         <tr>
-    <td>Tambra </td>
-    <td>Bonatti</td>
-    <td>tambra@brightspotcreative.com</td>
-    <td>Empty Field</td>
-    <td>
-        <button class="btn">Edit</button>
-        <button class="btn">View</button>
-        <button class="close-image"><img src="img/trash_recyclebin_empty_closed.png"></button>
-     </td>
-  </tr>
-         <tr>
-    <td>Charlie </td>
-    <td>Callahan</td>
-    <td>charlie@brightspotcreative.com</td>
-    <td>Empty Field</td>
-    <td>
-        <button class="btn">Edit</button>
-        <button class="btn">View</button>
-        <button class="close-image"><img src="img/trash_recyclebin_empty_closed.png"></button>
-     </td>
-  </tr>
-         <tr>
-    <td>Chiedu </td>
-    <td>Okpala</td>
-    <td>chie@brightspotcreative.com</td>
-    <td>Empty Field</td>
-    <td>
-        <button class="btn">Edit</button>
-        <button class="btn">View</button>
-        <button class="close-image"><img src="img/trash_recyclebin_empty_closed.png"></button>
-     </td>
-  </tr>
-        <tr>
-    <td>Terence </td>
-    <td>Dew</td>
-    <td>terence@brightspotcreative.com</td>
-    <td>Empty Field</td>
-    <td>
-        <button class="btn">Edit</button>
-        <button class="btn">View</button>
-        <button class="close-image"><img src="img/trash_recyclebin_empty_closed.png"></button>
-     </td>
-  </tr>
-         <tr>
-    <td>Tambra </td>
-    <td>Bonatti</td>
-    <td>tambra@brightspotcreative.com</td>
-    <td>Empty Field</td>
-    <td>
-        <button class="btn">Edit</button>
-        <button class="btn">View</button>
-        <button class="close-image"><img src="img/trash_recyclebin_empty_closed.png"></button>
-     </td>
-  </tr>
-         <tr>
-    <td>Charlie </td>
-    <td>Callahan</td>
-    <td>charlie@brightspotcreative.com</td>
-    <td>Empty Field</td>
-    <td>
-        <button class="btn">Edit</button>
-        <button class="btn">View</button>
-        <button class="close-image"><img src="img/trash_recyclebin_empty_closed.png"></button>
-     </td>
-  </tr>
-         <tr>
-    <td>Chiedu </td>
-    <td>Okpala</td>
-    <td>chie@brightspotcreative.com</td>
-    <td>Empty Field</td>
-    <td>
-        <button class="btn">Edit</button>
-        <button class="btn">View</button>
-        <button class="close-image"><img src="img/trash_recyclebin_empty_closed.png"></button>
-     </td>
-  </tr>
-        <tr>
-    <td>Terence </td>
-    <td>Dew</td>
-    <td>terence@brightspotcreative.com</td>
-    <td>Empty Field</td>
-    <td>
-        <button class="btn">Edit</button>
-        <button class="btn">View</button>
-        <button class="close-image"><img src="img/trash_recyclebin_empty_closed.png"></button>
-     </td>
-  </tr>
-         <tr>
-    <td>Tambra </td>
-    <td>Bonatti</td>
-    <td>tambra@brightspotcreative.com</td>
-    <td>Empty Field</td>
-    <td>
-        <button class="btn">Edit</button>
-        <button class="btn">View</button>
-        <button class="close-image"><img src="img/trash_recyclebin_empty_closed.png"></button>
-     </td>
-  </tr>
-         <tr>
-    <td>Charlie </td>
-    <td>Callahan</td>
-    <td>charlie@brightspotcreative.com</td>
-    <td>Empty Field</td>
-    <td>
-        <button class="btn">Edit</button>
-        <button class="btn">View</button>
-        <button class="close-image"><img src="img/trash_recyclebin_empty_closed.png"></button>
-     </td>
-  </tr>
-         <tr>
-    <td>Chiedu </td>
-    <td>Okpala</td>
-    <td>chie@brightspotcreative.com</td>
-    <td>Empty Field</td>
-    <td>
-        <button class="btn">Edit</button>
-        <button class="btn">View</button>
-        <button class="close-image"><img src="img/trash_recyclebin_empty_closed.png"></button>
-     </td>
-  </tr>
-        <tr>
-    <td>Terence </td>
-    <td>Dew</td>
-    <td>terence@brightspotcreative.com</td>
-    <td>Empty Field</td>
-    <td>
-        <button class="btn">Edit</button>
-        <button class="btn">View</button>
-        <button class="close-image"><img src="img/trash_recyclebin_empty_closed.png"></button>
-     </td>
-  </tr>
-         <tr>
-    <td>Tambra </td>
-    <td>Bonatti</td>
-    <td>tambra@brightspotcreative.com</td>
-    <td>Empty Field</td>
-    <td>
-        <button class="btn">Edit</button>
-        <button class="btn">View</button>
-        <button class="close-image"><img src="img/trash_recyclebin_empty_closed.png"></button>
-     </td>
-  </tr>
-         <tr>
-    <td>Charlie </td>
-    <td>Callahan</td>
-    <td>charlie@brightspotcreative.com</td>
-    <td>Empty Field</td>
-    <td>
-        <button class="btn">Edit</button>
-        <button class="btn">View</button>
-        <button class="close-image"><img src="img/trash_recyclebin_empty_closed.png"></button>
-     </td>
-  </tr>
-         <tr>
-    <td>Chiedu </td>
-    <td>Okpala</td>
-    <td>chie@brightspotcreative.com</td>
-    <td>Empty Field</td>
-    <td>
-        <button class="btn">Edit</button>
-        <button class="btn">View</button>
-        <button class="close-image"><img src="img/trash_recyclebin_empty_closed.png"></button>
-     </td>
-  </tr>
-  
-   
-</table>
-
-       </div><!--end of .table-responsive-->
-    </div>
-       </div>
   </div>
+
+</form>
+        
+        <div class="login_bottom"></div>
+        </div>
+        
+    </div>
+    
+<script>
+    $( "form" ).on( "submit", function( event ) {
+    event.preventDefault();
+    
+        $.post( "https://webservices.brightspotevents.com/api/applications/find_all/", {
+            organization: this.orgcode.value
+}).then(function(incoming) {
+            var indata = JSON.parse(incoming);
+                var successflag = indata.success;
+            if (successflag) {
+                
+                var records = indata.data.records;
+               // alert(JSON.stringify(records));
+                var eventsJsonArray = [];
+        
+        $.each(records, function(key, value){
+            
+           // alert(key + ":" + JSON.stringify(value) );
+            
+            var event = value.name;
+            
+            eventsJsonArray.push(event);
+            
+        });
+        
+//        alert(eventsJsonArray);
+                
+                window.location.href = "login.html";
+                
+    } else {
+        alert( "Sorry, but you are not eligible." );
+    }
+});
+});
+    </script>
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
     <script type="text/javascript">

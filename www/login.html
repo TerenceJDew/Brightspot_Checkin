@@ -66,15 +66,11 @@
     <input type="text" placeholder="Enter Username" name="uname" required>
 
     <input type="password" placeholder="Enter Password" name="psw" required>
-      <select name="Enviornment">
-          <option value="volvo">Volvo</option>
-          <option value="saab">Saab</option>
-          <option value="fiat">Fiat</option>
-      </select>
-      <select  name="Events">
-          <option value="volvo">Volvo</option>
-          <option value="saab">Saab</option>
-          <option value="fiat">Fiat</option>
+    
+      <select  name="events">
+          <option value="NBC Upfronts">NBC Upfronts</option>
+          <option value="NBC Meet and Greet">NBC Meet and Greet</option>
+          <option value="NBC Members Party">NBC Members Party</option>
       </select>
       
 <p>
@@ -92,6 +88,39 @@
         
     </div>
     
+    <script>
+
+
+    $(document).on("pagebeforecreate",function(event){
+        alert("pagebeforecreate event fired!");
+        
+        $.post( "https://webservices.brightspotevents.com/api/applications/find_all/", {
+            organization: "mlb"
+}).then(function(incoming) {
+            var indata = JSON.parse(incoming);
+            var successflag = indata.success;
+            if (successflag) {
+                
+                var records = indata.data.records;
+               // alert(JSON.stringify(records));
+                var eventsJsonArray = [];
+        
+        $.each(records, function(key, value){
+            
+           // alert(key + ":" + JSON.stringify(value) );
+            
+            var event = value.name;
+            
+            eventsJsonArray.push(event);
+            
+        });
+                                        
+    } else {
+        alert( "Sorry, but you are not eligible." );
+    }
+});
+});
+    </script>
     
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/index.js"></script>

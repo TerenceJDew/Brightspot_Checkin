@@ -1,230 +1,81 @@
-.Login_Page {
+.background {     
   position: absolute;
-  left: 0px;
-  top: 0px;
-  width: 1536px;
-  height: 2048px;
-  z-index: 404;
+  width: 100%;
+  height: 100%;
+  z-index: -200;
 }
-.Email {
-  font-size: 29px;
-  font-family: "Arial";
-  color: rgb(115, 114, 114);
-  line-height: 2.143;
-  position: absolute;
-  left: 547px;
-  top: 495.748px;
-  z-index: 402;
+
+.container{
+    margin: 0 auto;
+    width: 100%;
+    height: 100%;
 }
-.Rounded_Rectangle_2 {
-  border-style: solid;
-  border-width: 1px;
-  border-color: rgb(26, 152, 213);
-  border-radius: 10px;
-  background-color: rgb(255, 255, 255);
-  position: absolute;
-  left: 522px;
-  top: 498px;
-  width: 486px;
-  height: 59px;
-  z-index: 401;
+
+
+
+.login_form{ 
+    text-align: center;
+    background: white;
+    height: 450px;
+    width: 300px;
+    margin: 0 auto;
+    margin-top: 200px;
+    position: relative;
 }
-.Rectangle_7_copy {
-  background-color: rgb(207, 209, 210);
-  position: absolute;
-  left: 938px;
-  top: 781px;
-  width: 40px;
-  height: 20px;
-  z-index: 400;
+
+.login_logo{
+    margin: auto 0;
+    margin-bottom: 30px;
+    width: 250px;
+    height: 100px;
 }
-.Events {
-  font-size: 29px;
-  font-family: "Arial";
-  color: rgb(115, 114, 114);
-  line-height: 2.143;
-  position: absolute;
-  left: 547px;
-  top: 757.748px;
-  z-index: 399;
+
+input[type=text],input[type=password], input[type=checkbox]{
+        display: inline-block;
+        margin: auto 0;
+
 }
-.Rounded_Rectangle_2_copy_16 {
-  border-style: solid;
-  border-width: 1px;
-  border-color: rgb(26, 152, 213);
-  border-radius: 10px;
-  background-color: rgb(255, 255, 255);
-  position: absolute;
-  left: 522px;
-  top: 760px;
-  width: 486px;
-  height: 59px;
-  z-index: 398;
+
+input[type=text],input[type=password], select{
+    width: 80%;
+    margin-bottom: 15px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgb(26, 152, 213);
+    border-radius: 5px;
+    background-color: rgb(255, 255, 255);
+    
 }
-.Rectangle_7 {
-  background-color: rgb(207, 209, 210);
-  position: absolute;
-  left: 938px;
-  top: 698px;
-  width: 40px;
-  height: 20px;
-  z-index: 397;
+
+
+
+
+select{
+    -webkit-appearance: none; 
+      background: url(img/dropdown_indc.png) no-repeat right;
+
 }
-.Environment {
-  font-size: 29px;
-  font-family: "Arial";
-  color: rgb(115, 114, 114);
-  line-height: 2.143;
-  position: absolute;
-  left: 547px;
-  top: 674.748px;
-  z-index: 396;
+
+.rm-label{
+      font-weight:500;
 }
-.Rounded_Rectangle_2_copy_2 {
-  border-style: solid;
-  border-width: 1px;
-  border-color: rgb(26, 152, 213);
-  border-radius: 10px;
-  background-color: rgb(255, 255, 255);
-  position: absolute;
-  left: 522px;
-  top: 677px;
-  width: 486px;
-  height: 59px;
-  z-index: 395;
-}
-.Password {
-  font-size: 29px;
-  font-family: "Arial";
-  color: rgb(115, 114, 114);
-  line-height: 2.143;
-  position: absolute;
-  left: 547px;
-  top: 585.748px;
-  z-index: 394;
-}
-.Rounded_Rectangle_2_copy {
-  border-style: solid;
-  border-width: 1px;
-  border-color: rgb(26, 152, 213);
-  border-radius: 10px;
-  background-color: rgb(255, 255, 255);
-  position: absolute;
-  left: 522px;
-  top: 588px;
-  width: 486px;
-  height: 59px;
-  z-index: 393;
-}
-.Remember_Me {
-  font-size: 25px;
-  font-family: "Arial";
-  color: rgb(115, 114, 114);
-  line-height: 2.5;
-  position: absolute;
-  left: 583px;
-  top: 862.25px;
-  z-index: 392;
-}
-.Rounded_Rectangle_3 {
-  border-style: solid;
-  border-width: 1px;
-  border-color: rgb(26, 152, 213);
-  border-radius: 10px;
-  background-color: rgb(255, 255, 255);
-  position: absolute;
-  left: 525px;
-  top: 868px;
-  width: 46px;
-  height: 46px;
-  z-index: 391;
-}
-.Click_to_Reset_Lost_Forgot_Password {
-  font-size: 25px;
-  font-family: "Arial";
-  color: rgb(26, 152, 213);
-  line-height: 2.5;
-  position: absolute;
-  left: 563px;
-  top: 1194.296px;
-  z-index: 390;
-}
-.Login {
-  font-size: 20px;
-  font-family: "Arial";
-  color: rgb(255, 255, 255);
-  line-height: 1.652;
-  text-align: center;
-  -moz-transform: matrix( 2.05205957594253,0,0,2.05060985204981,0,0);
-  -webkit-transform: matrix( 2.05205957594253,0,0,2.05060985204981,0,0);
-  -ms-transform: matrix( 2.05205957594253,0,0,2.05060985204981,0,0);
-  position: absolute;
-  left: 655.909px;
-  top: 1062.363px;
-  width: 46.353px;
-  height: 19px;
-  z-index: 389;
-}
-.Rounded_Rectangle_2 {
+
+.login-btn{
+  background-image: -moz-linear-gradient( 90deg, rgb(89,152,24) 0%, rgb(136,197,73) 100%);
+    background-image: -webkit-linear-gradient( 90deg, rgb(89,152,24) 0%, rgb(136,197,73) 100%);
+    background-image: -ms-linear-gradient( 90deg, rgb(89,152,24) 0%, rgb(136,197,73) 100%);
   border-style: solid;
   border-width: 1px;
   border-color: rgb(136, 197, 73);
-  border-radius: 15px;
-  background-image: -moz-linear-gradient( 90deg, rgb(89,152,24) 0%, rgb(136,197,73) 100%);
-  background-image: -webkit-linear-gradient( 90deg, rgb(89,152,24) 0%, rgb(136,197,73) 100%);
-  background-image: -ms-linear-gradient( 90deg, rgb(89,152,24) 0%, rgb(136,197,73) 100%);
-  position: absolute;
-  left: 792px;
-  top: 1005px;
-  width: 215px;
-  height: 68px;
-  z-index: 388;
+  color: white;
+  width: 150px;
 }
-.Rounded_Rectangle_1_copy {
-  background-color: rgb(207, 209, 210);
-  position: absolute;
-  left: 474px;
-  top: 960px;
-  width: 587px;
-  height: 160px;
-  z-index: 387;
-}
-.Rounded_Rectangle_1 {
-  border-radius: 10px;
-  background-color: rgb(255, 255, 255);
-  position: absolute;
-  left: 474px;
-  top: 220px;
-  width: 587px;
-  height: 900px;
-  z-index: 386;
-}
-.Layer_2_copy {
-  background-image: url("Layer 2 copy.png");
-  opacity: 0.58;
-  position: absolute;
-  left: -214px;
-  top: -51px;
-  width: 2000px;
-  height: 1369px;
-  z-index: 385;
-}
-.Layer_2 {
-  background-image: url("Layer 2.png");
-  opacity: 0.58;
-  position: absolute;
-  left: -214px;
-  top: -51px;
-  width: 2000px;
-  height: 2105px;
-  z-index: 384;
-}
-.Layer_1_copy {
-  background-image: url("Layer 1 copy.png");
-  position: absolute;
-  left: 0px;
-  top: 0px;
-  width: 1536px;
-  height: 2048px;
-  z-index: 383;
+
+
+.login_bottom{
+    position: absolute;
+    bottom: 0;
+    background:lightgray;
+    width: 300px;
+    height: 80px;
 }
