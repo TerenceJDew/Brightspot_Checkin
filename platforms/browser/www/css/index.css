@@ -80,10 +80,13 @@ body {
 }
 */
 
+.container{
+ padding-left: 0;
+ padding-right: 0;   
+}
+
 .col-xs-12 .row .container{
     margin: 0 -10px;
-    padding-left: 0;
-    padding-right: 0;
     width: 100%;
 }
 

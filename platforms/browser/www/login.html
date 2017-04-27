@@ -65,16 +65,13 @@
 
     <input type="text" placeholder="Enter Username" name="uname" required>
 
-    <input type="password" placeholder="Enter Password" name="psw" required>
+    <input type="password" placeholder="Enter Password" name="pwd" required>
     
-      <select  name="events">
-          <option value="NBC Upfronts">NBC Upfronts</option>
-          <option value="NBC Meet and Greet">NBC Meet and Greet</option>
-          <option value="NBC Members Party">NBC Members Party</option>
+      <select id="events_sel"  name="events">
       </select>
       
 <p>
-  <input type="checkbox" id="cbox1" value="first_checkbox">
+  <input type="checkbox" id="remember_me" value="first_checkbox">
   <label class="rm-label" for="cbox1">Remember Me</label>
 </p>
     <button class="login-btn" type="submit">Login</button>
@@ -88,35 +85,131 @@
         
     </div>
     
-    <script>
 
+<script>
 
-    $(document).on("pagebeforecreate",function(event){
-        alert("pagebeforecreate event fired!");
-        
-        $.post( "https://webservices.brightspotevents.com/api/applications/find_all/", {
-            organization: "mlb"
-}).then(function(incoming) {
-            var indata = JSON.parse(incoming);
-            var successflag = indata.success;
-            if (successflag) {
+$(document).ready(function(){
+    
+    const serialize = (obj) => (
+        Object.keys(obj).reduce(
+            (a, k) => { a.push(`${k}=${encodeURIComponent(obj[k])}`); return a; },
+            []
+        ).join('&')
+    );
+    
+ $.post( "https://webservices.brightspotapps.com/api/applications/find_all/", serialize({ 
+            //String
+//        $.post( "https://webservices.brightspotevents.com/api/applications/find_all/", serialize( {
+        organization: window.localStorage.getItem("org_code")
+}), {withCredentials: true}).then(function(incoming) {
+           
+           var indata;
+            
+            if (typeof incoming === 'string' || incoming instanceof String)
+            {
+               // alert("String");  
+                indata = JSON.parse(incoming);
+            }
+            else{
                 
-                var records = indata.data.records;
-               // alert(JSON.stringify(records));
-                var eventsJsonArray = [];
-        
-        $.each(records, function(key, value){
+               // alert("Object"); 
+                indata = incoming;
+            }
             
-           // alert(key + ":" + JSON.stringify(value) );
-            
-            var event = value.name;
-            
-            eventsJsonArray.push(event);
-            
+            var successflag = indata.success;
+     
+     if (successflag) {
+         
+         var records = indata.data.records;
+         //alert(JSON.stringify(records));
+         var eventsJsonArray = [];
+         
+         $.each(records, function(key, value){
+             
+//             alert(key + ":" + JSON.stringify(value) );
+             var event = value.name;
+             var id = key;
+             $('#events_sel').append($('<option>', { 
+                 value: id,
+                 text : event 
+             }));            
         });
+         
+         if($('#remember_me').checked){
+             window.localStorage.setItem("remembered","yes");
+         }
+         else{
+            window.localStorage.setItem("remembered","no"); 
+         }
                                         
     } else {
+        
         alert( "Sorry, but you are not eligible." );
+    
+    }
+    });
+});
+
+    </script>
+    
+    
+    
+    <script>
+
+const serialize = (obj) => (
+        Object.keys(obj).reduce(
+            (a, k) => { a.push(`${k}=${encodeURIComponent(obj[k])}`); return a; },
+            []
+        ).join('&')
+    );
+
+    $( "form" ).on( "submit", function( event ) {
+        var that = this;
+        event.preventDefault();
+        //object
+        $.post( "https://webservices.brightspotapps.com/api/auth/login/", serialize({ 
+        //String
+//      $.post( "https://webservices.brightspotevents.com/api/applications/find_all/", serialize( {
+            
+            app_id: $("#events_sel").val(),
+            email:  this.uname.value,
+            password:this.pwd.value
+            
+}), {withCredentials: true}).then(function(incoming) {
+            
+           var indata;
+            
+//            alert($("#events_sel").val());
+            
+           
+            if (!(typeof incoming === 'string' || incoming instanceof String))
+            {
+//                alert(typeof(incoming)); 
+                indata = incoming;
+            }
+            else{
+//               alert(typeof(incoming));  
+                indata = JSON.parse(incoming);
+            }
+            
+            
+            var successflag = indata.success;
+            
+            if (successflag) {
+                              
+                window.localStorage.setItem ("app_id",$("#events_sel").val());
+                
+                window.localStorage.setItem ("event_name",$("#events_sel option:selected").text());
+               
+                window.localStorage.setItem ("session_id", indata.data.session_id);
+//                alert(indata.data.session_id);
+                alert(window.localStorage.getItem("event_name"));
+//                alert(window.localStorage.getItem("app_id"));
+                window.location.href = "checkinview.html";
+            
+            } else {
+                
+                alert( "Sorry, but you are not eligible." );
     }
 });
 });

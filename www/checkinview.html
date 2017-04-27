@@ -53,42 +53,92 @@
 
 <body>
         
+    
+    <div class="modal fade" id="new_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="" id="modal_header"></h4>
+                    <!-- Modal Body -->
+            <div class="modal-body">
+                <form class='form_group' role="form">
+                
+                </form>
+            </div>
+                <button type="button" id="submit_attn" class="btn modal_btn">Submit</button>
+                <button type="button" id="cancel_attn" class="btn modal_btn" data-dismiss="modal">Cancel</button>
+                
+            </div>
+        </div>
+    </div>
+    
+    
+<!--Confirm Delete Modal-->
+        <div class="modal fade" id="modaldelete" role="dialog" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog modal-sm">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" id="btn-cancel" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Confirm Delete?</h4>
+                </div>
+                <div class="modal-body">
+                    The user will be removed from this event.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn" id="btn-cancel" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-danger btn-delete" id="btn-delete" data-dismiss="modal">Delete</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+<!--    End-->
+    
+    <!--Confirm Delete Modal-->
+        <div class="modal fade" id="modal_load" role="dialog" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog modal-sm">
+              
+            <p id='loading'>Loading...</p>
+
+        </div>
+    </div>
+<!--    End-->
+    
    <div class="container-fluid">
 
        <div class="row">
            <div class="col-xs-12">
                  <div id="top-nav">      
-                     
-                    <!--Top Nav Area-->
-                      <div class="dropdown">
-                          <img id="logo" src="img/logo.png">
-                       
-                          
-                          <div class="drop_list dropdown-menu" aria-labelledby="dropdownMenuButton">
-                              <a class="dropdown-item" href="#">Action</a>
-                              <a class="dropdown-item" href="#">Another action</a>
-                              <a class="dropdown-item" href="#">Something else here</a>
-                          </div>
-                      </div>
-  
+                     <p id="event_title">Event Text</p>
+                     <button id='logout'>Logout</button>
+                     <img id="logo" src="img/logo.png">
+                    <!--Top Nav Area-->  
 </div>
                     <!--Top Nav Area End-->
                     <!--Search Area-->
 <div id="search-summary">
     <div id="summary-cont">
             <p>Summary:</p>
-            <p>Checked-in: 12345</p>
-            <p>Registered: 500</p>
-            <p>All Attendees: 3500</p>
+            <p id="chckd">Checked-in: 0</p>
+            <p id="rgstrd">Registered: 0</p>
+            <p id="ttlcnt">All Attendees: 0</p>
     </div>
     
     <div id="search_cont">
-    <div class="input-group search">
-        <input type="text" class="form-control" placeholder="Recipient's username" aria-describedby="basic-addon2">
-        <span class="input-group-addon" id="basic-addon2"></span>
-        </div>
-      <button class="search_button btn">+ Add New Attendee</button>  
         
+        
+    <div class="input-group search">
+        <input type="text" id="searchfield" class="form-control" placeholder="Search" aria-describedby="basic-addon2">
+         <div class="input-group-btn">
+        <button id='searchsubmit' class="btn btn-default" type="button"><i class="glyphicon glyphicon-search"></i></button>
+        </div>
+        </div>
+    <div id="attendeebtn_cont">    
+      <button id="btnHide" type="button" class="mode_button btn">Check-In View</button>    
+      <button id="attendeebtn" class="add_attendee btn">+ Add New Attendee</button>  
+    </div>        
     </div>
 
                </div>
@@ -97,92 +147,909 @@
 <div class="table table-responsive">
 
 <table class="table">
-  <tr>
-    <th>First Name</th>
-    <th>Last Name</th>
-    <th>Email</th>
-    <th>Client Choice</th>
-    <th>Check-In</th>
-    <th>Actions</th>
-  </tr>
-
-<tr>
-    <td>Tambra </td>
-    <td>Bonatti</td>
-    <td>tambra@brightspotcreative.com</td>
-    <td>Empty Field</td>
-    <td>
-        <button onclick="colorchange" class="btn">Check-In</button>
-        
-     </td>
-    <td>
-        <button class="close-image"><img src="img/plus_sign.png"></button></td>
-  </tr>
-         <tr>
-    <td>Charlie </td>
-    <td>Callahan</td>
-    <td>charlie@brightspotcreative.com</td>
-    <td>Empty Field</td>
-    <td>
-        <button onclick="colorchange" class="btn">Check-In</button>
-        
-     </td>
-    <td>
-        <button class="close-image"><img src="img/plus_sign.png"></button>
-             </td>
-  </tr>
-    
+ <thead class="tableClick">
     <tr>
-    <td><p>Chiedu</p> </td>
-    <td>Okpala</td>
-    <td>chie@brightspotcreative.com</td>
-    <td>Empty Field</td>
-    <td>
-        <button onclick="colorchange" class="btn">Check-In</button>
-        
-     </td>
-    <td>
-        <button class="close-image"><img src="img/plus_sign.png"></button>
-             </td>
-  </tr>
     
-    <tr>
-    <td>Terence </td>
-    <td>Dew</td>
-    <td>terence@brightspotcreative.com</td>
-    <td>Empty Field</td>
-     <td>
-        <button onclick="colorchange" class="btn">Check-In</button>
-        
-     </td>
-    <td><button class="close-image"><img src="img/plus_sign.png"></button></td>
   </tr>
- 
-   
+    </thead>
+    <tbody>
+    
+    </tbody>
 </table>
 
        </div><!--end of .table-responsive-->
     </div>
        </div>
   </div>
+    
+    
+<script>
+
+const serialize = (obj) => (
+        Object.keys(obj).reduce(
+            (a, k) => { a.push(`${k}=${encodeURIComponent(obj[k])}`); return a; },
+            []
+        ).join('&')
+    );
+
+var tablefields= [];
+var idList =[];
+var requiredfields=[];
+var editedAttendee;
+var mode;
+
+$(document).ready(function(){
+    
+if(!window.localStorage.getItem("session_id")){
+        
+    window.location.href = "index.html";
+} 
+
+getCategories();
+
+
+var interval = setInterval(refreshTimer, 120000);
+
+function refreshTimer() {
+    getAttendees(1);
+    clearInterval(interval);
+    interval = setInterval(refreshTimer, 120000);
+}    
+   
+    
+//Accept parameter if Edit button
+//Parameter is id
+//If id send edit else its add
+
+    $('#submit_attn').click(function(){
+   if(mode == "add"){
+       
+        addAttendee();
+   }
+    else{
+       
+        editAttendeewithId(editedAttendee); 
+    }
+     
+});
+    
+    $('#btn-delete').click(function(){
+   
+        deleteAttendee();
+});
+    
+    $('tbody').on('click', '.trash_attendee', function () {
+    
+    var currentRow = $(this).closest('td').parent()[0].sectionRowIndex;
+    editedAttendee = idList[currentRow];
+    
+    $('#modaldelete').modal('show');
+    
+});
+    
+    $('#logout').click(function(){
+        var that = this;
+        event.preventDefault();
+        //object
+        $.post( "https://webservices.brightspotapps.com/api/auth/logout/", serialize({ 
+        //String
+//      $.post( "https://webservices.brightspotevents.com/api/applications/find_all/", serialize( {
+            
+            app_id: window.localStorage.getItem("app_id"),
+            session_id: window.localStorage.getItem("session_id")
+            
+}), {withCredentials: true}).then(function(incoming) {
+            
+           var indata;
+            
+//            alert($("#events_sel").val());
+            
+           
+            if (!(typeof incoming === 'string' || incoming instanceof String))
+            {
+//                alert(typeof(incoming)); 
+                indata = incoming;
+            }
+            else{
+//               alert(typeof(incoming));  
+                indata = JSON.parse(incoming);
+            }
+            
+            
+            var successflag = indata.success;
+            
+            if (successflag) {
+                              
+                window.localStorage.removeItem("app_id");
+                
+                window.localStorage.removeItem("session_id"); 
+                
+                window.location.href = "login.html";
+            
+            } else {
+                
+                alert( "Sorry, but you are not eligible." );
+    }
+});
+            });
+    
+    $("#attendeebtn").click(function(){
+
+   $('#modal_header').html('Add Attendee');
+    createModal();
+   $('#new_modal').modal('show');
+    mode = "add";
+
+});
+    
+    $('tbody').on('click', '.edit_button', function () {
+    
+    var currentRow = $(this).closest('td').parent()[0].sectionRowIndex;
+    editedAttendee = idList[currentRow];
+    
+    $('#modal_header').html('Edit Attendee');
+    createModal();
+    populateModalData();
+
+});
+    
+    $('#btnHide').click(function() {
+//                $('td:nth-child(2)').hide();
+                // if your table has header(th), use this
+    if($(".checkin_col").is(":visible")){
+            
+            $(".checkin_col").hide(); 
+            $(".edit_col").show(); 
+            //edit_col
+            $(".mode_button").html('Check-In View'); 
+        } 
+        else{
+            $(".checkin_col").show();
+            $(".edit_col").hide();
+            $(".mode_button").html('Attendee View'); 
+            
+            
+        }
+                
+            });
+    
+    $('#searchsubmit').click(function() { 
+        refreshTimer();
+    });
+
+    $('tbody').on('click', '.checkbutton', function(){
+
+var currentRow = $(this).closest('td').parent()[0].sectionRowIndex;
+var that = this;  
+    
+if($( this ).hasClass( "redbtn" )){
+    
+    $.post( "https://webservices.brightspotapps.com/api/attendees/uncheck_in/", serialize({ 
+        //String
+//      $.post( "https://webservices.brightspotevents.com/api/applications/find_all/", serialize( {
+            
+            app_id: window.localStorage.getItem("app_id"),
+            session_id: window.localStorage.getItem("session_id"),
+            id: idList[currentRow]
+            
+}), {withCredentials: true}).then(function(incoming) {
+           
+        
+           var indata;   
+                   
+            if (!(typeof incoming === 'string' || incoming instanceof String))
+            {
+               // alert(typeof(incoming)); 
+                indata = incoming;
+            }
+            else{
+              // alert(typeof(incoming));  
+                indata = JSON.parse(incoming);
+            }
+            
+            //alert(JSON.stringify(indata));
+            var successflag = indata.success;
+            
+    if (successflag) {
+                                        
+          $( that ).toggleClass( "redbtn" );
+          $( that ).html("Check-In");
+        }
+        
+        else {
+                
+            alert( "Sorry, but there was an error" );
+    }
+});  
+}
+else{
+    $.post( "https://webservices.brightspotapps.com/api/attendees/check_in/", serialize({ 
+        //String
+//      $.post( "https://webservices.brightspotevents.com/api/applications/find_all/", serialize( {
+            
+            app_id: window.localStorage.getItem("app_id"),
+            session_id: window.localStorage.getItem("session_id"),
+            id: idList[currentRow]
+            
+}), {withCredentials: true}).then(function(incoming) {
+           
+        
+           var indata;   
+                   
+            if (!(typeof incoming === 'string' || incoming instanceof String))
+            {
+               // alert(typeof(incoming)); 
+                indata = incoming;
+            }
+            else{
+              // alert(typeof(incoming));  
+                indata = JSON.parse(incoming);
+            }
+            
+            //alert(JSON.stringify(indata));
+            var successflag = indata.success;
+            
+    if (successflag) {
+                                        
+          $( that ).toggleClass( "redbtn" );
+          $( that ).html("Checked-In");
+        }
+        
+        else {
+                
+            alert( "Sorry, but there was an error" );
+    }
+});  
+}
+ 
+});
+    
+    
+
+//Basic Setup    
+    function getCategories(){
+    $("#event_title").html(window.localStorage.getItem("event_name"));    
+        
+    $.post( "https://webservices.brightspotapps.com/api/events/find/", serialize({ 
+        //String
+//      $.post( "https://webservices.brightspotevents.com/api/applications/find_all/", serialize( {
+            
+            app_id: window.localStorage.getItem("app_id"),
+            session_id: window.localStorage.getItem("session_id"),
+            
+            
+}), {withCredentials: true}).then(function(incoming) {
+           
+        
+           var indata;
+            
+          // alert("We got Data")  
+            
+           
+            if (!(typeof incoming === 'string' || incoming instanceof String))
+            {
+               // alert(typeof(incoming)); 
+                indata = incoming;
+            }
+            else{
+              // alert(typeof(incoming));  
+                indata = JSON.parse(incoming);
+            }
+            
+            var successflag = indata.success;
+            
+            if (successflag) {
+                                              
+                var categories = indata.data.attendee_fields;
+                var fields = indata.data.attendee_admin_fields.slice(0,4);
+                tablefields = fields;
+                
+                
+                
+                
+//         alert(JSON.stringify(categories));
+         console.log(JSON.stringify(tablefields)); 
+                
+            $.each(categories, function(key, value){
+                
+               var requiredstring = JSON.stringify(value["validation_rules"]["admin_event_attendees/add"]);
+                
+//                alert(requiredstring);
+                
+                if (~requiredstring.indexOf("required")){
+                    
+                    requiredfields.push([value.name,value.machine_name,value.type,value.options]);
+                    
+                }
+                
+            }); 
+                
+//                alert(requiredfields);
+                //create fields;
+                
+                
+        $.each(fields, function(idx, field){
+            
+            $.each(categories, function(key, value){
+                
+                
+                if(field == value.machine_name){
+                    
+                    //alert(value.name);
+                    var markup = "<th>"+ value.name +"</th>";
+                    $("table thead tr").append(markup);
+                    
+                }
+             
+              
+        });
+           }); 
+                
+            var markupbuttons = "<th class='checkin_col'>Check-In</th><th class='edit_col'>Actions</th>"
+            $("table thead tr").append(markupbuttons);
+            getAttendees(1);    
+            
+
+            } else {
+                
+            alert( "Sorry, but there was an error" );
+    }
+        
+});
+} 
+    
+    function deleteAttendee(){
+        
+         $('#modal_load').modal('show');
+        
+         $.post( "https://webservices.brightspotapps.com/api/attendees/delete/", serialize({ 
+        //String
+//      $.post( "https://webservices.brightspotevents.com/api/applications/find_all/", serialize( {
+            
+            app_id: window.localStorage.getItem("app_id"),
+            session_id: window.localStorage.getItem("session_id"),
+            id: editedAttendee
+            
+}), {withCredentials: true}).then(function(incoming) {
+           
+        
+           var indata;
+            
+          // alert("We got Data")  
+            
+           
+            if (!(typeof incoming === 'string' || incoming instanceof String))
+            {
+               // alert(typeof(incoming)); 
+                indata = incoming;
+            }
+            else{
+              // alert(typeof(incoming));  
+                indata = JSON.parse(incoming);
+            }
+            
+            var successflag = indata.success;
+            
+            if (successflag) {
+                
+                alert("Attendee Deleted");
+                refreshTimer();
+                $('#modal_load').modal('hide');
+                
+            } else {
+                
+            alert( "Sorry, but there was an error" );
+    }
+        
+}); 
+         
+     }
+    
+    function getRegistered(){
+    
+    $.post( "https://webservices.brightspotapps.com/api/attendees/count/", serialize({ 
+        //String
+//      $.post( "https://webservices.brightspotevents.com/api/applications/find_all/", serialize( {
+            
+            app_id: window.localStorage.getItem("app_id"),
+            session_id: window.localStorage.getItem("session_id"),
+            registration_status:"REGISTERED"
+            
+}), {withCredentials: true}).then(function(incoming) {
+           
+        
+           var indata;   
+                   
+            if (!(typeof incoming === 'string' || incoming instanceof String))
+            {
+               // alert(typeof(incoming)); 
+                indata = incoming;
+            }
+            else{
+              // alert(typeof(incoming));  
+                indata = JSON.parse(incoming);
+            }
+            
+            //alert(JSON.stringify(indata));
+            var successflag = indata.success;
+            
+    if (successflag) {
+                                        
+         var register_count = indata.data;
+         $("#rgstrd").html("Registered: " + register_count);
+    
+        }
+        
+        else {
+                
+            alert( "Sorry, but there was an error" );
+    }
+});
+}
+    
+    function getCheckIn(){
+    
+    $.post( "https://webservices.brightspotapps.com/api/attendees/count/", serialize({ 
+        //String
+//      $.post( "https://webservices.brightspotevents.com/api/applications/find_all/", serialize( {
+            
+            app_id: window.localStorage.getItem("app_id"),
+            session_id: window.localStorage.getItem("session_id"),
+            check_in_status:"CHECKED-IN"
+            
+}), {withCredentials: true}).then(function(incoming) {
+           
+        
+           var indata;   
+                   
+            if (!(typeof incoming === 'string' || incoming instanceof String))
+            {
+               // alert(typeof(incoming)); 
+                indata = incoming;
+            }
+            else{
+              // alert(typeof(incoming));  
+                indata = JSON.parse(incoming);
+            }
+            
+            //alert(JSON.stringify(indata));
+            var successflag = indata.success;
+            
+    if (successflag) {
+                                        
+         var check_in_count = indata.data;
+         $("#chckd").html("Checked-In: " + check_in_count);
+         getRegistered();
+        
+        
+        }
+        
+        else {
+                
+            alert( "Sorry, but there was an error" );
+    }
+});
+}    
+
+//Attendee Actions    
+    function getAttendees(page_num) {
+
+        
+    var currentpage;
+    
+    
+    
+    if (page_num == 1){
+       idList = [];
+       $("table tbody tr").remove();
+       currentpage = 1; 
+        $('#modal_load').modal('show');
+    }
+    
+    else{
+        
+       currentpage = page_num;
+        
+    }
+    
+   
+        
+  var post_code = serialize({
+            app_id: window.localStorage.getItem("app_id"),
+            limit: 1000,
+            session_id: window.localStorage.getItem("session_id"),
+            page: currentpage
+});
+    
+ post_code += "&search[$or][]["+tablefields[0]+"]="+encodeURIComponent($(searchfield).val());
+ post_code += "&search[$or][]["+tablefields[1]+"]="+encodeURIComponent($(searchfield).val());
+ post_code += "&search[$or][]["+tablefields[2]+"]="+encodeURIComponent($(searchfield).val());
+ post_code += "&search[$or][]["+tablefields[3]+"]="+encodeURIComponent($(searchfield).val());
+    
+        //String
+//  $.post( "https://webservices.brightspotevents.com/api/applications/find_all/", serialize( )));
+    //alert(post_code);
+    $.post( "https://webservices.brightspotapps.com/api/attendees/find_all/", post_code, {withCredentials: true}).then(function(incoming) {
+       
+           
+           var indata;
+            
+          // alert("We got Data")  
+            
+           
+            if (!(typeof incoming === 'string' || incoming instanceof String))
+            {
+               // alert(typeof(incoming)); 
+                indata = incoming;
+            }
+            else{
+              // alert(typeof(incoming));  
+                indata = JSON.parse(incoming);
+            }
+            
+            //alert(JSON.stringify(indata));
+            var successflag = indata.success;
+            
+    if (successflag) {
+                   
+         var records = indata.data.records;
+         //alert(JSON.stringify(records));
+         var eventsJsonArray = [];
+         var totalpages = indata.data.total_pages;
+         var total_count = indata.data.total_count;
+         
+        $("#ttlcnt").html("All Attendees: " + total_count);
+        
+        $.each(records, function(key, record){
+            
+            idList.push(key);
+            
+            $.each(tablefields, function(idx, value){
+                var markup; 
+                if(idx == 0){
+                    markup = "<tr class='"+ idList.length +"'><td>"+ record[value] +"</td></tr>";
+                    $("table tbody").append(markup);   
+                }
+                else{
+                
+                    markup = "<td>"+ record[value] +"</td>";
+                    $("table tbody tr:last").append(markup);   
+                }
+              
+            
+                 });
+            
+            
+            
+            var addedmarkup;
+            if(record.check_in_status =='CHECKED-IN'){
+              addedmarkup = "<td class='checkin_col'><button class='checkbutton redbtn greenbtn btn'>Checked-In</button></td><td class='edit_col'><button class='edit_button btn'>Edit</button><input class='trash_attendee' type='image' src='img/trash_recyclebin_empty_closed.png' /></td></tr>"; 
+            }
+            else{
+                addedmarkup = "<td class='checkin_col'><button class='checkbutton greenbtn btn'>Check-In</button></td><td class='edit_col'><button class='edit_button btn'>Edit</button><input class='trash_attendee' type='image' src='img/trash_recyclebin_empty_closed.png' /></td></tr>";   
+            }
+            
+            $("table tbody tr:last").append(addedmarkup);
+            $(".mode_button").html('Check-In View'); 
+            $(".checkin_col").hide(); 
+            $(".edit_col").show();
+            
+        });
+           
+            if(currentpage != totalpages)
+                {
+                    currentpage = currentpage + 1;
+                    getAttendees(currentpage);   
+                }
+           
+            getCheckIn();
+        
+        }
+        else {
+                
+            alert( "Sorry, but there was an error" );
+           
+        }
+        
+        $('#modal_load').modal('hide');
+        
+});
+    
+}    
+    
+    function addAttendee(){
+        
+            $('#modal_load').modal('show');
+        
+            var post_code = {};
+                 $(".form_group input[type=text],.form_group select, .form_group input[type=radio]:checked,input[type=checkbox]:checked").each(function(key,val){
+                    post_code[$(this).data('machine_name')] = $(this).val();
+                 });
+         post_code.app_id = window.localStorage.getItem("app_id"),
+         post_code.session_id = window.localStorage.getItem("session_id");
+        
+//        alert( serialize(post_code));
+          
+    $.post( "https://webservices.brightspotapps.com/api/attendees/add/", serialize(post_code), {withCredentials: true}).then(function(incoming) {
+           
+        
+           var indata;   
+                   
+            if (!(typeof incoming === 'string' || incoming instanceof String))
+            {
+               // alert(typeof(incoming)); 
+                indata = incoming;
+            }
+            else{
+              // alert(typeof(incoming));  
+                indata = JSON.parse(incoming);
+            }
+            
+            //alert(JSON.stringify(indata));
+            var successflag = indata.success;
+            
+    if (successflag) {
+                                        
+         alert("Attendee Created!");
+         refreshTimer();
+         $('#new_modal').modal('hide');
+        
+        }
+        
+        else {
+        alert( "Sorry, but there was an error" );
+        
+        }
+        $('#modal_load').modal('hide');
+}); 
+        
+        
+    } 
+    
+    function editAttendeewithId(attendee_id){
+
+        $('#modal_load').modal('show');
+        
+            var post_code = {};
+                 $(".form_group input[type=text],.form_group select, .form_group input[type=radio]:checked,input[type=checkbox]:checked").each(function(key,val){
+                    post_code[$(this).data('machine_name')] = $(this).val();
+                 });
+         post_code.app_id = window.localStorage.getItem("app_id");
+         post_code.session_id = window.localStorage.getItem("session_id");
+         post_code.id = attendee_id;
+        
+        alert(serialize(post_code));
+          
+    $.post( "https://webservices.brightspotapps.com/api/attendees/update/", serialize(post_code), {withCredentials: true}).then(function(incoming) {
+           
+           var indata;   
+                   
+            if (!(typeof incoming === 'string' || incoming instanceof String))
+            {
+               // alert(typeof(incoming)); 
+                indata = incoming;
+            }
+            else{
+              // alert(typeof(incoming));  
+                indata = JSON.parse(incoming);
+            }
+            
+            //alert(JSON.stringify(indata));
+            var successflag = indata.success;
+            
+    if (successflag) {
+          $('#modal_load').modal('hide');      
+         alert("Attendee Edited!");
+         refreshTimer();
+         $('#new_modal').modal('hide');
+        
+        }
+        
+        else {
+        alert( "Sorry, but there was an error" );
+        
+        }
+}); 
+        
+        
+    }
+    
+    
+
+    
+//Modal Function    
+    function populateModalData (){
+    
+    $.post( "https://webservices.brightspotapps.com/api/attendees/find/", serialize({ 
+        //String
+//      $.post( "https://webservices.brightspotevents.com/api/applications/find_all/", serialize( {
+            
+            app_id: window.localStorage.getItem("app_id"),
+            session_id: window.localStorage.getItem("session_id"),
+            id: editedAttendee
+            
+}), {withCredentials: true}).then(function(incoming) {
+           
+        
+           var indata;
+            
+          // alert("We got Data")  
+            
+           
+            if (!(typeof incoming === 'string' || incoming instanceof String))
+            {
+               // alert(typeof(incoming)); 
+                indata = incoming;
+            }
+            else{
+              // alert(typeof(incoming));  
+                indata = JSON.parse(incoming);
+            }
+            
+            var successflag = indata.success;
+            
+            if (successflag) {
+             
+//            alert(JSON.stringify(indata.data));
+                var fields = indata.data;
+                var populatedata =[];
+//         alert(JSON.stringify(categories));
+//         alert(JSON.stringify(requiredfields)); 
+                
+        $.each(requiredfields, function(idx, value){
+                
+               var requiredstring = value[1];
+            
+            $.each(fields, function(key, field){
+                
+                
+                    if(key == requiredstring){
+                
+                    populatedata.push([requiredstring,field]);
+                    
+                }
+            });
+            }); 
+               // alert(JSON.stringify(populatedata));
+                populateModal(populatedata);
+                mode = "edit";
+                $('#new_modal').modal('show');
+                
+                
+            } else {
+                
+            alert( "Sorry, but there was an error" );
+    }
+        
+});
+    
+   
+    
+}
+    
+    function populateModal(data){
+        //data [{key:val},{key:val}]
+        // Incoming data gets looped through and populates form
+    
+        var element;
+        $(".form_group input[type=text],.form_group select, .form_group input[type=radio],input[type=checkbox]").each(function(key,val){
+            element = $(this);
+            
+           //alert(JSON.stringify(element.data('machine_name')));
+            
+            $.each(data, function(key,value){
+                
+                
+              if(element.data('machine_name') == value[0] ) {
+                    
+                  if (element.is('input[type=text]')|| element.is("select")){
+                    element.val(value[1]);
+                 }
+                 else{
+                     element.prop("checked", true);
+                 }
+              }
+            });
+        
+            });   
+    }
+    
+    function createModal(){
+        
+        var selectgroup;
+        var textgroup;
+        var radiogroup;
+        var checkgroup;
+        $('.modal-body form').empty();
+        
+         $.each(requiredfields, function(idx, value){
+                
+//             requiredfields.push([value.name,value.machine_name,value.type,value.options);
+//                '<form role=''form>
+             
+                if (value[2] == 'text'){
+                   
+                 textgroup = "<div class='form-group'><label for='exampleInputEmail1'>"+value[0]+"</label><input type='text'  class='form-control "+value[1]+"'data-machine_name='"+value[1]+"' placeholder='Enter "+value[0]+"'/>";
+
+                 $(".modal-body form").append(textgroup);
+                }
+             
+             
+             else{
+                 
+                 if(value[2] == 'select'){
+                     
+                   selectgroup =  "<div class='form-group'><label for='exampleSelect1'>"+value[0]+"</label><select data-machine_name='"+value[1]+"' class='"+value[1]+"'>";
+                  
+                  var appendoption;
+                  
+                 $.each(value[3], function(idx, value){
+                    
+                    appendoption =  "<option>"+value+"</option>";
+                    selectgroup = selectgroup + appendoption;
+                 });
+                     
+                    selectgroup = selectgroup + "</select></div>";
+                     $(".modal-body form").append(selectgroup);
+                 }
+                 
+                 else if(value[2] == 'checkbox'){
+                    
+                    var appendcheck;
+                     
+                    checkgroup = "<div class='"+value[1]+"'><label for=''>"+value[0]+"</label>" 
+                    
+                    $.each(value[3], function(idx, value){
+                    
+                        appendcheck = "<input data-machine_name='"+value[1]+"' type='checkbox' class='"+value+">"+value+"</label>";
+                        
+                        checkgroup = checkgroup + appendcheck;
+                    });
+                     
+                     checkgroup = checkgroup +  "</div>";
+                     $(".modal-body form").append(checkgroup);
+                     
+                 }
+                 
+                 
+                 else if(value[2] == 'radio'){
+                     
+                     var appendradio;
+                     
+                    radiogroup = "<div class='form-radio'><label for=''>"+value[0]+"</label>" 
+                    
+                    $.each(value[3], function(idx, subvalue){
+                    
+                        appendradio = "<label class='radio-inline'><input data-machine_name='"+value[1]+"' type='radio'name='"+value[1]+"' class='"+subvalue+"' value='"+subvalue+"'/>"+subvalue+"</label>";
+                        
+                        radiogroup = radiogroup + appendradio;
+                    });
+                     
+                     radiogroup = radiogroup +  "</div>";
+                     $(".modal-body form").append(radiogroup);
+                 }
+                
+             }
+                
+            });     
+    }
+        
+    
+
+});
+
+$( window ).unload(function() {
+ if(window.localStorage.getItem("remembered")=="no"){
+    window.localStorage.removeItem("session_id"); 
+ }
+    
+});
+    
+    </script>
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
     <script type="text/javascript">
         app.initialize();
-
-function colorchange(id) {
-
-    var background = document.getElementsByClassName("check-in_button").style.backgroundImage;
-    
-    
-    if (background == "linear-gradient( 90deg, rgb(159,35,22) 0%, rgb(248,31,20) 100%)") {
-        document.getElementsByClassName("check-in_button").style.backgroundImage = "linear-gradient( 90deg, rgb(89,152,24) 0%, rgb(136,197,73) 100%)";
-    } else {
-        document.getElementsByClassName("check-in_button") = "linear-gradient( 90deg, rgb(159,35,22) 0%, rgb(248,31,20) 100%)";
-    }
-
-}
-
     </script>
 </body>
 
