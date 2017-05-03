@@ -1022,6 +1022,75 @@ else{
     
 }
     
+    function getAttendeeEmail(){
+        
+        $.post( "https://webservices.brightspotapps.com/api/attendees/find/", serialize({ 
+        //String
+//      $.post( "https://webservices.brightspotevents.com/api/applications/find_all/", serialize( {
+            
+            app_id: window.localStorage.getItem("app_id"),
+            session_id: window.localStorage.getItem("session_id"),
+            id: editedAttendee
+            
+}), {withCredentials: true}).then(function(incoming) {
+           
+        
+           var indata;
+            
+          // alert("We got Data")  
+            
+           
+            if (!(typeof incoming === 'string' || incoming instanceof String))
+            {
+               // alert(typeof(incoming)); 
+                indata = incoming;
+            }
+            else{
+              // alert(typeof(incoming));  
+                indata = JSON.parse(incoming);
+            }
+            
+            var successflag = indata.success;
+            
+            if (successflag) {
+             
+//            alert(JSON.stringify(indata.data));
+                var fields = indata.data;
+                var populatedata =[];
+//         alert(JSON.stringify(categories));
+//         alert(JSON.stringify(requiredfields)); 
+                
+        $.each(requiredfields, function(idx, value){
+                
+               var requiredstring = value[1];
+            
+            $.each(fields, function(key, field){
+                
+                
+                    if(key == "email"){
+                
+                    populatedata.push([requiredstring,field]);
+                    
+                }
+            });
+            }); 
+               // alert(JSON.stringify(populatedata));
+                //populateModal(populatedata);
+                mode = "edit";
+                $('#new_modal').modal('show');
+                
+                
+            } else {
+                
+            alert( "Sorry, but there was an error" );
+    }
+        
+});
+    
+    }
+    
+//    function createEmailMessage
+    
     function populateModal(data){
         //data [{key:val},{key:val}]
         // Incoming data gets looped through and populates form
