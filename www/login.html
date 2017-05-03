@@ -127,20 +127,14 @@ $(document).ready(function(){
          $.each(records, function(key, value){
              
 //             alert(key + ":" + JSON.stringify(value) );
-             var event = value.name;
+             var event = value.event.name;
              var id = key;
              $('#events_sel').append($('<option>', { 
                  value: id,
                  text : event 
              }));            
         });
-         
-         if($('#remember_me').checked){
-             window.localStorage.setItem("remembered","yes");
-         }
-         else{
-            window.localStorage.setItem("remembered","no"); 
-         }
+    
                                         
     } else {
         
@@ -204,6 +198,15 @@ const serialize = (obj) => (
                 window.localStorage.setItem ("session_id", indata.data.session_id);
 //                alert(indata.data.session_id);
                 alert(window.localStorage.getItem("event_name"));
+                
+                if($('#remember_me').prop('checked')==true){
+             
+            window.localStorage.setItem("remembered","yes");
+         }
+         else{
+             
+            window.localStorage.setItem("remembered","no"); 
+         }
 //                alert(window.localStorage.getItem("app_id"));
                 window.location.href = "checkinview.html";
             

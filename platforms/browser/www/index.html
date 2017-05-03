@@ -148,7 +148,12 @@ $( "form" ).on( "submit", function( event ) {
             //String
 //        $.post( "https://webservices.brightspotevents.com/api/applications/find_all/", serialize( {
             organization: this.orgcode.value
-}), {withCredentials: true}).then(function(incoming) {
+}), {withCredentials: true})
+        
+        
+            
+            
+            .then(function(incoming) {
             
            var indata;
             
@@ -164,8 +169,7 @@ $( "form" ).on( "submit", function( event ) {
             
             var successflag = indata.success;
             
-            if (successflag) {
-                
+            if (successflag == true) {
                 var records = indata.data.records;
                 //alert(JSON.stringify(records));
                 var eventsJsonArray = [];
@@ -176,13 +180,15 @@ $( "form" ).on( "submit", function( event ) {
                     //alertalert(window.localStorage.getItem("org_code")); 
                    window.localStorage.setItem("org_code", that.orgcode.value);
                 } else {
+                    
                     alert("Sorry! No Web Storage support..");
                 }
                 
                 window.location.href = "login.html";
 
     } else {
-        alert( "Sorry, but you are not eligible." );
+        
+        alert( indata.errors.organization );
     }
 });
 });
