@@ -102,7 +102,7 @@
     </div>
 <!--    End-->
     
-    <!--Confirm Delete Modal-->
+    <!--Confirm Email Modal-->
         <div class="modal fade" id="modalemail" role="dialog" data-backdrop="static" data-keyboard="false">
         <div class="modal-dialog modal-sm">
 
@@ -817,7 +817,7 @@ else{
             
         });
            
-            if(currentpage != totalpages)
+            if(currentpage != totalpages && totalpages != 0)
                 {
                     currentpage = currentpage + 1;
                     getAttendees(currentpage);   
@@ -835,11 +835,13 @@ else{
            
         }
         
+        
         $('#modal_load').modal('hide');
        
         
 }).fail(function(err) {
-            alert(JSON.stringify(err.responseText));
+        
+            //alert(JSON.stringify(err.responseText));
         
     // handle any error resulting from any of the above calls    
     
@@ -946,9 +948,9 @@ else{
         
     }
     
-    function emailAttendee(attendee_id){
+    function emailAttendee(){
         
-     $.post( "https://webservices.brightspotapps.com/api/applications/find_all/", serialize({ 
+     $.post( "https://webservices.brightspotapps.com/api/event_emails/find_all/", serialize({ 
             //String
 //        $.post( "https://webservices.brightspotevents.com/api/applications/find_all/", serialize( {
         organization: window.localStorage.getItem("org_code")
