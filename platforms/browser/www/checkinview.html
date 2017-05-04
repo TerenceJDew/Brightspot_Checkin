@@ -46,6 +46,7 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/font-awesome-4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="css/checkinview.css" />
  
     
@@ -161,7 +162,7 @@
     <div class="input-group search">
         <input type="text" id="searchfield" class="form-control" placeholder="Search" aria-describedby="basic-addon2">
          <div class="input-group-btn">
-        <button id='searchsubmit' class="btn btn-default" type="button"><i class="glyphicon glyphicon-search"></i></button>
+        <button id='searchsubmit' class="btn btn-default" type="button"><i id="button-symbol" class="glyphicon glyphicon-search"></i></button>
         </div>
         </div>
     <div id="attendeebtn_cont">    
@@ -707,7 +708,13 @@ else{
        idList = [];
        $("table tbody tr").remove();
        currentpage = 1; 
-        $('#modal_load').modal('show');
+       // $('#modal_load').modal('show');
+     
+        
+        $('#button-symbol').removeClass().addClass("fa fa-circle-o-notch fa-spin");
+        
+         
+        
     }
     
     else{
@@ -720,7 +727,7 @@ else{
         
   var post_code = serialize({
             app_id: window.localStorage.getItem("app_id"),
-            limit: 1000,
+            limit: 200,
             session_id: window.localStorage.getItem("session_id"),
             page: currentpage
 });
@@ -815,6 +822,9 @@ else{
                     currentpage = currentpage + 1;
                     getAttendees(currentpage);   
                 }
+        else{
+            $('#button-symbol').removeClass().addClass("glyphicon glyphicon-search");
+        }
            
             getCheckIn();
         
@@ -826,12 +836,15 @@ else{
         }
         
         $('#modal_load').modal('hide');
+       
         
 }).fail(function(err) {
             alert(JSON.stringify(err.responseText));
+        
     // handle any error resulting from any of the above calls    
-}); 
     
+}); 
+       
 }    
     
     function addAttendee(){
