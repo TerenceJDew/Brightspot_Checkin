@@ -199,7 +199,7 @@ $( "form" ).on( "submit", function( event ) {
 })
   
  .fail(function(err) {
-            alert(err);
+            alert(JSON.stringify(err.responseText));
     // handle any error resulting from any of the above calls    
 });
         
