@@ -755,7 +755,7 @@ else{
             app_id: window.localStorage.getItem("app_id"),
             session_id: window.localStorage.getItem("session_id"),}) ;
         
-        post_code += "&search[]['registered_status']=REGISTERED";
+        post_code += "&search[][registered_status]=REGISTERED";
         
     $.post( "https://webservices.brightspotapps.com/api/attendees/count/",  post_code
         //String
@@ -797,7 +797,7 @@ else{
             app_id: window.localStorage.getItem("app_id"),
             session_id: window.localStorage.getItem("session_id")}) ;
         
-        post_code += "&search[]['check_in_status']=CHECKED-IN";
+        post_code += "&search[][check_in_status]=CHECKED-IN";
         
     $.post( "https://webservices.brightspotapps.com/api/attendees/count/", post_code
         //String
