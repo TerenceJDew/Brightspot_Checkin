@@ -81,6 +81,7 @@ body {
 .mode_button{
     float: left;
     margin-top: 5px;
+    background-color:#0098c4; 
     font-weight: 700;
     border-style: solid;
     color: black;
@@ -122,8 +123,14 @@ body {
  border-color: rgb(136, 197, 73); 
  color: white; 
  width: 100px;
+    margin-left: 20px; 
 }
 
+#search_prompt{
+    font-size: 25px;
+    font-weight: 700;
+    text-align: center;
+}
 #email_attn{
     background-color: #0098c4;
     color: white;

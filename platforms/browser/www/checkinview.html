@@ -110,14 +110,14 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" id="btn-cancel" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Confirm Delete?</h4>
+                    <h4 class="modal-title">Confirm Email?</h4>
                 </div>
                 <div class="modal-body">
-                    The user will be removed from this event.
+                    
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn" id="btn-cancel" data-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-danger btn-delete" id="btn-delete" data-dismiss="modal">Email</button>
+                    <button type="button" class="btn btn-danger btn-delete" id="btn-email" data-dismiss="modal">Email</button>
                 </div>
             </div>
 
@@ -188,10 +188,10 @@
 </table>
 
        </div><!--end of .table-responsive-->
+    <p id="search_prompt">Use Search Field Above to Find Attendees</p>
     </div>
        </div>
   </div>
-    
     
 <script>
 
@@ -208,6 +208,8 @@ var requiredfields=[];
 var editedAttendee;
 var mode;
 var tablestate;
+var currentemail;
+var currentemailid;
 
 
 $(document).ready(function(){
@@ -230,10 +232,6 @@ function refreshTimer() {
     interval = setInterval(refreshTimer, 120000);
 }    
    
-    
-//Accept parameter if Edit button
-//Parameter is id
-//If id send edit else its add
 
     $('#submit_attn').click(function(){
    if(mode == "add"){
@@ -247,11 +245,44 @@ function refreshTimer() {
      
 });
     
-    $('#email_attn').click(function(){
-        
-        emailAttendee(editedAttendee);
+    $('#btn-email').click(function(){
      
-});
+        var settings = {
+  "async": true,
+  "crossDomain": true,
+  "url": "https://webservices.brightspotapps.com/api/event_emails/send_email/?app_id=58eea34fd1cb78f4358b4567&session_id=590bb4b9d1cb78b71a8b4567&attendees%5B%5D=59004d29d1cb7888398b456b&id=58efdef0d1cb78b9698b4567",
+  "method": "GET",
+  "headers": {
+    "cache-control": "no-cache",
+    "postman-token": "6819875d-6c4a-533d-9435-a9d8fe56548b"
+  }
+}
+
+$.ajax(settings).done(function (response) {
+    
+     if (!(typeof response === 'string' || response instanceof String))
+            {
+//                alert(typeof(incoming)); 
+                indata = response;
+            }
+            else{
+//               alert(typeof(incoming));  
+                indata = JSON.parse(response);
+            }
+    
+     var successflag = indata.success;
+            
+            if (successflag) {
+                              
+             alert("Email Sent Successfully");
+            } 
+    
+}).fail(function(err) {
+        
+    alert(JSON.stringify(err.responseText));
+ 
+}); 
+    });
     
     $('#btn-delete').click(function(){
    
@@ -340,9 +371,8 @@ function refreshTimer() {
     var currentRow = $(this).closest('td').parent()[0].sectionRowIndex;
     editedAttendee = idList[currentRow];
     
-    $('#modal_header').html('Edit Attendee');
-    createModal();
-    populateModalData();
+    getAttendeeEmail(editedAttendee);
+        
     clearInterval(interval);
 });
     
@@ -366,11 +396,11 @@ function refreshTimer() {
         }
                 
             });
-    
-    
-    
+  
     $('#searchsubmit').click(function() { 
-        refreshTimer();
+        if($(searchfield).val() != 0){
+            refreshTimer();
+        }
     });
 
     $('tbody').on('click', '.checkbutton', function(){
@@ -460,6 +490,104 @@ else{
  
 });
     
+    
+//Email Functions
+      
+    function showEmailModal(){
+    $('#modalemail').modal('show');
+} 
+        
+    function createEmailMessage(email){
+        
+        
+     $.post( "https://webservices.brightspotapps.com/api/event_emails/find_all/", serialize({ 
+            //String
+//        $.post( "https://webservices.brightspotevents.com/api/applications/find_all/", serialize( {
+        app_id: window.localStorage.getItem("app_id"),
+            session_id: window.localStorage.getItem("session_id"),
+}), {withCredentials: true}).then(function(incoming) {
+           
+           var indata;
+            
+            if (typeof incoming === 'string' || incoming instanceof String)
+            {
+               // alert("String");  
+                indata = JSON.parse(incoming);
+            }
+            else{
+                
+               // alert("Object"); 
+                indata = incoming;
+            }
+            
+            var successflag = indata.success;
+     
+     if (successflag) {
+         
+         var records = indata.data.records;
+         //alert(JSON.stringify(records));
+         
+         $.each(records, function(key, value){
+             
+             if (value.name == "Re-send E-Ticket Email Confirmation"){
+            
+            currentemailid = value.id;
+                 
+             $('#modalemail .modal-body').html("Send \"" + value.name+ "\" to " + email+"?");
+              
+             showEmailModal();     
+             }
+             
+             });                            
+     } 
+     });   
+    }
+    function getAttendeeEmail(attendee){
+        
+        $.post( "https://webservices.brightspotapps.com/api/attendees/find/", serialize({ 
+        //String
+//      $.post( "https://webservices.brightspotevents.com/api/applications/find_all/", serialize( {
+            
+            app_id: window.localStorage.getItem("app_id"),
+            session_id: window.localStorage.getItem("session_id"),
+            id: attendee
+            
+}), {withCredentials: true}).then(function(incoming) {
+           
+        
+           var indata;
+            
+          // alert("We got Data")  
+            
+           
+            if (!(typeof incoming === 'string' || incoming instanceof String))
+            {
+               // alert(typeof(incoming)); 
+                indata = incoming;
+            }
+            else{
+              // alert(typeof(incoming));  
+                indata = JSON.parse(incoming);
+            }
+            
+            var successflag = indata.success;
+            
+            if (successflag) {
+             
+//            alert(JSON.stringify(indata.data));
+                var attendeeemail = indata.data.email;
+                var populatedata =[];            
+                createEmailMessage(attendeeemail);
+            }
+        
+}).fail(function(err) {
+//            alert(JSON.stringify(err.responseText));
+    // handle any error resulting from any of the above calls    
+}); 
+    
+    }
+
+    
 //Basic Setup    
     function getCategories(){
     $("#event_title").html(window.localStorage.getItem("event_name"));    
@@ -541,7 +669,8 @@ else{
                 
             var markupbuttons = "<th class='checkin_col'>Check-In</th><th class='edit_col'>Actions</th>"
             $("table thead tr").append(markupbuttons);
-            getAttendees(1);    
+           // getAttendees(1);
+            getCheckIn();
             
 
             } else {
@@ -550,7 +679,7 @@ else{
     }
         
 }).fail(function(err) {
-            alert(JSON.stringify(err.responseText));
+//            alert(JSON.stringify(err.responseText));
     // handle any error resulting from any of the above calls    
 }); 
 } 
@@ -590,7 +719,9 @@ else{
             if (successflag) {
                 
                 alert("Attendee Deleted");
+                if($(searchfield).val() !=0){
                 refreshTimer();
+                }
                 $('#modal_load').modal('hide');
                 
                 
@@ -601,7 +732,7 @@ else{
         
              
 }).fail(function(err) {
-            alert(JSON.stringify(err.responseText));
+//          alert(JSON.stringify(err.responseText));
     // handle any error resulting from any of the above calls    
 }); 
          
@@ -647,7 +778,7 @@ else{
             alert( "Sorry, but there was an error" );
     }
 }).fail(function(err) {
-            alert(JSON.stringify(err.responseText));
+//            alert(JSON.stringify(err.responseText));
     // handle any error resulting from any of the above calls    
 }); 
 }
@@ -691,7 +822,7 @@ else{
         
         
 }).fail(function(err) {
-            alert(JSON.stringify(err.responseText));
+//            alert(JSON.stringify(err.responseText));
     // handle any error resulting from any of the above calls    
 }); 
 }    
@@ -727,7 +858,7 @@ else{
         
   var post_code = serialize({
             app_id: window.localStorage.getItem("app_id"),
-            limit: 200,
+            limit: 275,
             session_id: window.localStorage.getItem("session_id"),
             page: currentpage
 });
@@ -823,6 +954,10 @@ else{
                     getAttendees(currentpage);   
                 }
         else{
+              if(totalpages == 0){
+                  alert("No Attendees Found");
+              }
+            
             $('#button-symbol').removeClass().addClass("glyphicon glyphicon-search");
         }
            
@@ -883,14 +1018,20 @@ else{
     if (successflag) {
                                         
          alert("Attendee Created!");
-         refreshTimer();
-         $('#new_modal').modal('hide');
+        
+        
+        if($(searchfield).val() === 0){
+            refreshTimer();
+        }
+         
+        
+        $('#new_modal').modal('hide');
         
         }
     
         $('#modal_load').modal('hide');
 }) .fail(function(err) {
-            alert(JSON.stringify(err.responseText));
+           // alert(JSON.stringify(err.responseText));
     // handle any error resulting from any of the above calls    
 }); 
         
@@ -909,7 +1050,7 @@ else{
          post_code.session_id = window.localStorage.getItem("session_id");
          post_code.id = attendee_id;
         
-        alert(serialize(post_code));
+//        alert(serialize(post_code));
           
     $.post( "https://webservices.brightspotapps.com/api/attendees/update/", serialize(post_code), {withCredentials: true}).then(function(incoming) {
            
@@ -931,72 +1072,21 @@ else{
     if (successflag) {
           //$('#modal_load').modal('hide');      
          alert("Attendee Edited!");
-         refreshTimer();
+         if($(searchfield).val() != 0){
+            refreshTimer();
+        }
          $('#new_modal').modal('hide');
         
         }
         
-        else {
-        alert( "Sorry, but there was an error" );
-        
-        }
 }).fail(function(err) {
-            alert(JSON.stringify(err.responseText));
+//           alert(JSON.stringify(err.responseText));
     // handle any error resulting from any of the above calls    
 }); 
         
         
     }
-    
-    function emailAttendee(){
-        
-     $.post( "https://webservices.brightspotapps.com/api/event_emails/find_all/", serialize({ 
-            //String
-//        $.post( "https://webservices.brightspotevents.com/api/applications/find_all/", serialize( {
-        organization: window.localStorage.getItem("org_code")
-}), {withCredentials: true}).then(function(incoming) {
-           
-           var indata;
-            
-            if (typeof incoming === 'string' || incoming instanceof String)
-            {
-               // alert("String");  
-                indata = JSON.parse(incoming);
-            }
-            else{
-                
-               // alert("Object"); 
-                indata = incoming;
-            }
-            
-            var successflag = indata.success;
-     
-     if (successflag) {
-         
-         var records = indata.data.records;
-         //alert(JSON.stringify(records));
-         var eventsJsonArray = [];
-         
-         $.each(records, function(key, value){
-             
-//             alert(key + ":" + JSON.stringify(value) );
-             var event = value.name;
-             var id = key;
-             $('#emails_sel').append($('<option>', { 
-                 value: id,
-                 text : event 
-             }));            
-        });
-    
-                                        
-    } else {
-        
-        alert( "Sorry, but you are not eligible." );
-    
-    }
-    });   
-    }
-
+ 
     
 //Modal Function    
     function populateModalData (){
@@ -1057,88 +1147,13 @@ else{
                 $('#new_modal').modal('show');
                 
                 
-            } else {
-                
-            alert( "Sorry, but there was an error" );
-    }
+            } 
         
 }).fail(function(err) {
-            alert(JSON.stringify(err.responseText));
+//            alert(JSON.stringify(err.responseText));
     // handle any error resulting from any of the above calls    
-}); 
-    
-   
-    
+});   
 }
-    
-    function getAttendeeEmail(){
-        
-        $.post( "https://webservices.brightspotapps.com/api/attendees/find/", serialize({ 
-        //String
-//      $.post( "https://webservices.brightspotevents.com/api/applications/find_all/", serialize( {
-            
-            app_id: window.localStorage.getItem("app_id"),
-            session_id: window.localStorage.getItem("session_id"),
-            id: editedAttendee
-            
-}), {withCredentials: true}).then(function(incoming) {
-           
-        
-           var indata;
-            
-          // alert("We got Data")  
-            
-           
-            if (!(typeof incoming === 'string' || incoming instanceof String))
-            {
-               // alert(typeof(incoming)); 
-                indata = incoming;
-            }
-            else{
-              // alert(typeof(incoming));  
-                indata = JSON.parse(incoming);
-            }
-            
-            var successflag = indata.success;
-            
-            if (successflag) {
-             
-//            alert(JSON.stringify(indata.data));
-                var fields = indata.data;
-                var populatedata =[];
-//         alert(JSON.stringify(categories));
-//         alert(JSON.stringify(requiredfields)); 
-                
-        $.each(requiredfields, function(idx, value){
-                
-               var requiredstring = value[1];
-            
-            $.each(fields, function(key, field){
-                
-                
-                    if(key == "email"){
-                
-                    populatedata.push([requiredstring,field]);
-                    
-                }
-            });
-            }); 
-               // alert(JSON.stringify(populatedata));
-                //populateModal(populatedata);
-                mode = "edit";
-                $('#new_modal').modal('show');
-                
-                
-            }
-        
-}).fail(function(err) {
-            alert(JSON.stringify(err.responseText));
-    // handle any error resulting from any of the above calls    
-}); 
-    
-    }
-    
-//    function createEmailMessage
     
     function populateModal(data){
         //data [{key:val},{key:val}]
@@ -1250,8 +1265,6 @@ else{
             });     
     }
         
-    
-
 });
 
 $( window ).unload(function() {

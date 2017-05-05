@@ -210,17 +210,16 @@ const serialize = (obj) => (
             window.localStorage.setItem("remembered","yes");
          }
          else{
-             
-            window.localStorage.setItem("remembered","no"); 
+        window.localStorage.setItem("remembered","no"); 
          }
 //                alert(window.localStorage.getItem("app_id"));
                 window.location.href = "checkinview.html";
             
-            } else {
-                
-                alert( "Sorry, but you are not eligible." );
-    }
-});
+            } 
+}).fail(function(err) {
+    alert(JSON.stringify(err.response.errors);
+    // handle any error resulting from any of the above calls    
+}); 
 });
     </script>
     
