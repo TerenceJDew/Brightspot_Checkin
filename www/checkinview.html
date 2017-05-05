@@ -342,7 +342,11 @@ $.ajax(settings).done(function (response) {
                 
                 alert( "Sorry, but you are not eligible." );
     }
-});
+}).fail(function(err) { 
+        
+        alert(JSON.stringify(err.responseJSON.errors).replace("{","").replace("}",""));    
+        
+    });
             });
     
     $("#attendeebtn").click(function(){
@@ -485,7 +489,11 @@ else{
                 
             alert( "Sorry, but there was an error" );
     }
-});  
+}).fail(function(err) { 
+        
+        alert(JSON.stringify(err.responseJSON.errors).replace("{","").replace("}",""));    
+        
+    });  
 }
  
 });
@@ -580,10 +588,11 @@ else{
                 createEmailMessage(attendeeemail);
             }
         
-}).fail(function(err) {
-//            alert(JSON.stringify(err.responseText));
-    // handle any error resulting from any of the above calls    
-}); 
+}).fail(function(err) { 
+        
+        alert(JSON.stringify(err.responseJSON.errors).replace("{","").replace("}",""));    
+        
+    });
     
     }
 
@@ -678,10 +687,11 @@ else{
             alert( "Sorry, but there was an error" );
     }
         
-}).fail(function(err) {
-//            alert(JSON.stringify(err.responseText));
-    // handle any error resulting from any of the above calls    
-}); 
+}).fail(function(err) { 
+        
+        alert(JSON.stringify(err.responseJSON.errors).replace("{","").replace("}",""));    
+        
+    }); 
 } 
     
     function deleteAttendee(){
@@ -731,24 +741,26 @@ else{
     }
         
              
-}).fail(function(err) {
-//          alert(JSON.stringify(err.responseText));
-    // handle any error resulting from any of the above calls    
-}); 
+}).fail(function(err) { 
+        
+        alert(JSON.stringify(err.responseJSON.errors).replace("{","").replace("}",""));    
+        
+    });
          
      }
     
     function getRegistered(){
     
-    $.post( "https://webservices.brightspotapps.com/api/attendees/count/", serialize({ 
+        var post_code= serialize({
+            app_id: window.localStorage.getItem("app_id"),
+            session_id: window.localStorage.getItem("session_id"),}) ;
+        
+        post_code += "&search[]['registered_status']=REGISTERED";
+        
+    $.post( "https://webservices.brightspotapps.com/api/attendees/count/",  post_code
         //String
 //      $.post( "https://webservices.brightspotevents.com/api/applications/find_all/", serialize( {
-            
-            app_id: window.localStorage.getItem("app_id"),
-            session_id: window.localStorage.getItem("session_id"),
-            registration_status:"REGISTERED"
-            
-}), {withCredentials: true}).then(function(incoming) {
+, {withCredentials: true}).then(function(incoming) {
            
         
            var indata;   
@@ -770,30 +782,27 @@ else{
                                         
          var register_count = indata.data;
          $("#rgstrd").html("Registered: " + register_count);
-    
+         getCount()
         }
         
-        else {
-                
-            alert( "Sorry, but there was an error" );
-    }
-}).fail(function(err) {
-//            alert(JSON.stringify(err.responseText));
-    // handle any error resulting from any of the above calls    
-}); 
+}).fail(function(err) { 
+        
+        alert(JSON.stringify(err.responseJSON.errors).replace("{","").replace("}",""));    
+        
+    }); 
 }
     
     function getCheckIn(){
-    
-    $.post( "https://webservices.brightspotapps.com/api/attendees/count/", serialize({ 
+     var post_code= serialize({
+            app_id: window.localStorage.getItem("app_id"),
+            session_id: window.localStorage.getItem("session_id")}) ;
+        
+        post_code += "&search[]['check_in_status']=CHECKED-IN";
+        
+    $.post( "https://webservices.brightspotapps.com/api/attendees/count/", post_code
         //String
 //      $.post( "https://webservices.brightspotevents.com/api/applications/find_all/", serialize( {
-            
-            app_id: window.localStorage.getItem("app_id"),
-            session_id: window.localStorage.getItem("session_id"),
-            check_in_status:"CHECKED-IN"
-            
-}), {withCredentials: true}).then(function(incoming) {
+    , {withCredentials: true}).then(function(incoming) {
            
         
            var indata;   
@@ -821,10 +830,52 @@ else{
         }
         
         
-}).fail(function(err) {
-//            alert(JSON.stringify(err.responseText));
-    // handle any error resulting from any of the above calls    
-}); 
+}).fail(function(err) { 
+        
+        alert(JSON.stringify(err.responseJSON.errors).replace("{","").replace("}",""));    
+        
+    });
+}    
+    
+    function getCount(){
+     var post_code= serialize({
+            app_id: window.localStorage.getItem("app_id"),
+            session_id: window.localStorage.getItem("session_id")}) ;
+        
+    $.post( "https://webservices.brightspotapps.com/api/attendees/count/",  post_code
+        //String
+//      $.post( "https://webservices.brightspotevents.com/api/applications/find_all/", serialize( {
+        , {withCredentials: true}).then(function(incoming) {
+           
+        
+           var indata;   
+                   
+            if (!(typeof incoming === 'string' || incoming instanceof String))
+            {
+               // alert(typeof(incoming)); 
+                indata = incoming;
+            }
+            else{
+              // alert(typeof(incoming));  
+                indata = JSON.parse(incoming);
+            }
+            
+            //alert(JSON.stringify(indata));
+            var successflag = indata.success;
+            
+    if (successflag) {
+                                        
+         var check_in_count = indata.data;
+          $("#ttlcnt").html("All Attendees: " + check_in_count);
+         
+        }
+        
+        
+}).fail(function(err) { 
+        
+        alert(JSON.stringify(err.responseJSON.errors).replace("{","").replace("}",""));    
+        
+    });
 }    
 
 //Attendee Actions    
@@ -900,7 +951,7 @@ else{
          var totalpages = indata.data.total_pages;
          var total_count = indata.data.total_count;
          
-        $("#ttlcnt").html("All Attendees: " + total_count);
+//        $("#ttlcnt").html("All Attendees: " + total_count);
         
         $.each(records, function(key, record){
             
@@ -974,13 +1025,11 @@ else{
         $('#modal_load').modal('hide');
        
         
-}).fail(function(err) {
+}).fail(function(err) { 
         
-            //alert(JSON.stringify(err.responseText));
+        alert(JSON.stringify(err.responseJSON.errors).replace("{","").replace("}",""));    
         
-    // handle any error resulting from any of the above calls    
-    
-}); 
+    });
        
 }    
     
@@ -1079,10 +1128,11 @@ else{
         
         }
         
-}).fail(function(err) {
-//           alert(JSON.stringify(err.responseText));
-    // handle any error resulting from any of the above calls    
-}); 
+}).fail(function(err) { 
+        
+        alert(JSON.stringify(err.responseJSON.errors).replace("{","").replace("}",""));    
+        
+    }); 
         
         
     }

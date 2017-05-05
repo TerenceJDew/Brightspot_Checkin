@@ -202,24 +202,27 @@ const serialize = (obj) => (
                 window.localStorage.setItem ("event_name",$("#events_sel option:selected").text());
                
                 window.localStorage.setItem ("session_id", indata.data.session_id);
-//                alert(indata.data.session_id);
-//                alert(window.localStorage.getItem("event_name"));
-                
+
                 if($('#remember_me').prop('checked')==true){
              
             window.localStorage.setItem("remembered","yes");
          }
          else{
-        window.localStorage.setItem("remembered","no"); 
+
+             window.localStorage.setItem("remembered","no"); 
          }
 //                alert(window.localStorage.getItem("app_id"));
                 window.location.href = "checkinview.html";
             
-            } 
-}).fail(function(err) {
-    alert(JSON.stringify(err.response.errors);
-    // handle any error resulting from any of the above calls    
-}); 
+            }
+           
+              
+            
+}).fail(function(err) { 
+        
+        alert(JSON.stringify(err.responseJSON.errors).replace("{","").replace("}",""));    
+        
+    });
 });
     </script>
     
