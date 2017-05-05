@@ -227,7 +227,10 @@ getCategories();
 var interval = setInterval(refreshTimer, 120000);
 
 function refreshTimer() {
-    getAttendees(1);
+    if($(searchfield).val() != 0){
+            getAttendees(1);  
+        }
+      
     clearInterval(interval);
     interval = setInterval(refreshTimer, 120000);
 }    
@@ -250,11 +253,10 @@ function refreshTimer() {
         var settings = {
   "async": true,
   "crossDomain": true,
-  "url": "https://webservices.brightspotapps.com/api/event_emails/send_email/?app_id=58eea34fd1cb78f4358b4567&session_id=590bb4b9d1cb78b71a8b4567&attendees%5B%5D=59004d29d1cb7888398b456b&id=58efdef0d1cb78b9698b4567",
+  "url": "https://webservices.brightspotapps.com/api/event_emails/send_email/?app_id="+ window.localStorage.getItem("app_id") +"&session_id="+window.localStorage.getItem("session_id")+"&attendees%5B%5D="+editedAttendee+"&id="+currentemailid,
   "method": "GET",
   "headers": {
     "cache-control": "no-cache",
-    "postman-token": "6819875d-6c4a-533d-9435-a9d8fe56548b"
   }
 }
 
@@ -312,10 +314,7 @@ $.ajax(settings).done(function (response) {
             
 }), {withCredentials: true}).then(function(incoming) {
             
-           var indata;
-            
-//            alert($("#events_sel").val());
-            
+           var indata;            
            
             if (!(typeof incoming === 'string' || incoming instanceof String))
             {
@@ -387,19 +386,21 @@ $.ajax(settings).done(function (response) {
             tablestate = "edit";
             $(".checkin_col").hide(); 
             $(".edit_col").show(); 
-            //edit_col
             $(".mode_button").html('Check-In View'); 
+            $("#table td:nth-child(4),th:nth-child(4)").hide();
+            $("#table td:nth-child(5),th:nth-child(5)").show();
         } 
         else{
             tablestate = "checkin";
             $(".checkin_col").show();
             $(".edit_col").hide();
             $(".mode_button").html('Attendee View'); 
-            
+            $("#table td:nth-child(4),th:nth-child(4)").show();
+            $("#table td:nth-child(5),th:nth-child(5)").hide();
             
         }
                 
-            });
+    });
   
     $('#searchsubmit').click(function() { 
         if($(searchfield).val() != 0){
@@ -631,8 +632,15 @@ else{
             
             if (successflag) {
                                               
-                var categories = indata.data.attendee_fields;
-                var fields = indata.data.attendee_admin_fields.slice(0,4);
+                 var categories = indata.data.attendee_fields;
+    var fields = [];
+    $.each(indata.data.attendee_admin_fields, function(key,val){
+        if(fields.length < 4 && val != 'registration_status' && val != 'check_in_status'){
+            fields.push(val);
+        }
+    });
+    //if check in view
+    fields.push('registration_status');
                 tablefields = fields;
                 
                 
@@ -679,13 +687,24 @@ else{
             var markupbuttons = "<th class='checkin_col'>Check-In</th><th class='edit_col'>Actions</th>"
             $("table thead tr").append(markupbuttons);
            // getAttendees(1);
-//            getCheckIn();
-            
-
-            } else {
                 
-            alert( "Sorry, but there was an error" );
-    }
+            if(tablestate == "checkin"){
+//                tablestate = "edit";
+                $(".checkin_col").show(); 
+                $(".edit_col").hide();
+                $(".mode_button").html('Attendee View'); 
+                $("#table td:nth-child(4),th:nth-child(4)").hide();
+                $("#table td:nth-child(5),th:nth-child(5)").show();    
+            }
+            else{
+//                tablestate = "checkin";
+                $(".checkin_col").hide(); 
+                $(".edit_col").show();
+                $(".mode_button").html('Check-In View'); }
+                $("#table td:nth-child(4),th:nth-child(4)").show();
+                $("#table td:nth-child(5),th:nth-child(5)").hide();
+            } 
+            getCheckIn();
         
 }).fail(function(err) { 
         
@@ -755,9 +774,9 @@ else{
             app_id: window.localStorage.getItem("app_id"),
             session_id: window.localStorage.getItem("session_id"),}) ;
         
-        post_code += "&search[][registration_status]=REGISTERED";
+        post_code += "&search[registration_status]=REGISTERED";
         
-    $.post( "https://webservices.brightspotapps.com/api/attendees/count/",  post_code
+    $.post( "https://webservices.brightspotapps.com/api/attendees/count/", post_code
         //String
 //      $.post( "https://webservices.brightspotevents.com/api/applications/find_all/", serialize( {
 , {withCredentials: true}).then(function(incoming) {
@@ -797,7 +816,7 @@ else{
             app_id: window.localStorage.getItem("app_id"),
             session_id: window.localStorage.getItem("session_id")}) ;
         
-        post_code += "&search[][check_in_status]=CHECKED-IN";
+        post_code += "&search[check_in_status]=CHECKED-IN";
         
     $.post( "https://webservices.brightspotapps.com/api/attendees/count/", post_code
         //String
@@ -984,28 +1003,10 @@ else{
             
             $("table tbody tr:last").append(addedmarkup);
             
-            
-            if(tablestate == "checkin"){
-                $(".checkin_col").show(); 
-                $(".edit_col").hide();
-                 $(".mode_button").html('Attendee View'); 
-            }
-            else{
-               $(".checkin_col").hide(); 
-               $(".edit_col").show();
-                $(".mode_button").html('Check-In View'); 
-            }
-            
-            
         });
            
             if(currentpage != totalpages && totalpages != 0)
                 {
-                    
-                    if (currentpage == 1){
-                 
-                        getCheckIn();
-                    }
                     
                     currentpage = currentpage + 1;
                     getAttendees(currentpage);   
@@ -1016,9 +1017,10 @@ else{
               }
             
             $('#button-symbol').removeClass().addClass("glyphicon glyphicon-search");
+            getCheckIn();
         }
            
-            
+           
         
         }
         
@@ -1029,6 +1031,21 @@ else{
         alert(JSON.stringify(err.responseJSON.errors).replace("{","").replace("}",""));    
         
     });
+        
+     if(tablestate == "checkin"){
+                $(".checkin_col").show(); 
+                $(".edit_col").hide();
+                $(".mode_button").html('Attendee View'); 
+//               $("#table td:nth-child(4),th:nth-child(4)").hide();
+//               $("#table td:nth-child(5),th:nth-child(5)").show();    
+            }
+            else{
+                $(".checkin_col").hide(); 
+                $(".edit_col").show();
+                $(".mode_button").html('Check-In View'); 
+//               $("#table td:nth-child(4),th:nth-child(4)").show();
+//                $("#table td:nth-child(5),th:nth-child(5)").hide();
+        }    
        
 }    
     
@@ -1078,10 +1095,11 @@ else{
         }
     
         $('#modal_load').modal('hide');
-}) .fail(function(err) {
-           // alert(JSON.stringify(err.responseText));
-    // handle any error resulting from any of the above calls    
-}); 
+}) .fail(function(err) { 
+        
+        alert(JSON.stringify(err.responseJSON.errors).replace("{","").replace("}",""));    
+        
+    }); 
         
         
     } 
