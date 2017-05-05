@@ -210,6 +210,7 @@ var mode;
 var tablestate;
 var currentemail;
 var currentemailid;
+var active_button = false;
 
 
 $(document).ready(function(){
@@ -382,23 +383,23 @@ $.ajax(settings).done(function (response) {
     $('#btnHide').click(function() {
 //                $('td:nth-child(2)').hide();
                 // if your table has header(th), use this
-    if($(".checkin_col").is(":visible")){
+    
+       if(active_button){
+           
+        if($(".checkin_col").is(":visible")){
             tablestate = "edit";
             $(".checkin_col").hide(); 
             $(".edit_col").show(); 
-            $(".mode_button").html('Check-In View'); 
-            $("#table td:nth-child(4),th:nth-child(4)").hide();
-            $("#table td:nth-child(5),th:nth-child(5)").show();
+            $(".mode_button").html('Check-In View');
         } 
         else{
             tablestate = "checkin";
             $(".checkin_col").show();
             $(".edit_col").hide();
             $(".mode_button").html('Attendee View'); 
-            $("#table td:nth-child(4),th:nth-child(4)").show();
-            $("#table td:nth-child(5),th:nth-child(5)").hide();
             
         }
+    }
                 
     });
   
@@ -686,25 +687,30 @@ else{
                 
             var markupbuttons = "<th class='checkin_col'>Check-In</th><th class='edit_col'>Actions</th>"
             $("table thead tr").append(markupbuttons);
-           // getAttendees(1);
+//            getAttendees(1);
                 
-            if(tablestate == "checkin"){
+             if(tablestate == "checkin"){
 //                tablestate = "edit";
-                $(".checkin_col").show(); 
-                $(".edit_col").hide();
+                
                 $(".mode_button").html('Attendee View'); 
-                $("#table td:nth-child(4),th:nth-child(4)").hide();
-                $("#table td:nth-child(5),th:nth-child(5)").show();    
+                $(".checkin_col").show(); 
+                $(".edit_col").hide(); 
+                 
             }
             else{
 //                tablestate = "checkin";
                 $(".checkin_col").hide(); 
-                $(".edit_col").show();
-                $(".mode_button").html('Check-In View'); }
-                $("#table td:nth-child(4),th:nth-child(4)").show();
-                $("#table td:nth-child(5),th:nth-child(5)").hide();
-            } 
-            getCheckIn();
+                $(".edit_col").show(); 
+                $(".mode_button").html('Check-In View'); 
+               
+            }
+            
+            }
+        
+            
+                
+                
+                
         
 }).fail(function(err) { 
         
@@ -914,7 +920,7 @@ else{
         
         $('#button-symbol').removeClass().addClass("fa fa-circle-o-notch fa-spin");
         
-         
+        
         
     }
     
@@ -923,7 +929,7 @@ else{
        currentpage = page_num;
         
     }
-    
+
    
         
   var post_code = serialize({
@@ -1017,6 +1023,23 @@ else{
               }
             
             $('#button-symbol').removeClass().addClass("glyphicon glyphicon-search");
+            
+            if(tablestate == "checkin"){
+            $(".checkin_col").show(); 
+            $(".edit_col").hide(); 
+            $(".mode_button").html('Check-In View'); 
+            //$("#table td:nth-child(4),th:nth-child(4)").hide();
+          // $("#table td:nth-child(5),th:nth-child(5)").show();
+        } 
+        else{
+            tablestate = "checkin";
+            $(".checkin_col").hide();
+            $(".edit_col").show();
+            $(".mode_button").html('Attendee View'); 
+            //$("#table td:nth-child(4),th:nth-child(4)").show();
+            //$("#table td:nth-child(5),th:nth-child(5)").hide();
+            
+        }
             getCheckIn();
         }
            
@@ -1031,22 +1054,7 @@ else{
         alert(JSON.stringify(err.responseJSON.errors).replace("{","").replace("}",""));    
         
     });
-        
-     if(tablestate == "checkin"){
-                $(".checkin_col").show(); 
-                $(".edit_col").hide();
-                $(".mode_button").html('Attendee View'); 
-//               $("#table td:nth-child(4),th:nth-child(4)").hide();
-//               $("#table td:nth-child(5),th:nth-child(5)").show();    
-            }
-            else{
-                $(".checkin_col").hide(); 
-                $(".edit_col").show();
-                $(".mode_button").html('Check-In View'); 
-//               $("#table td:nth-child(4),th:nth-child(4)").show();
-//                $("#table td:nth-child(5),th:nth-child(5)").hide();
-        }    
-       
+       active_button = true;
 }    
     
     function addAttendee(){
