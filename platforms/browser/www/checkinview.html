@@ -162,7 +162,8 @@
     <div class="input-group search">
         <input type="text" id="searchfield" class="form-control" placeholder="Search" aria-describedby="basic-addon2">
          <div class="input-group-btn">
-        <button id='searchsubmit' class="btn btn-default" type="button"><i id="button-symbol" class="glyphicon glyphicon-search"></i></button>
+        <button id='searchclear' class="btn btn-default" type="button"><i id="button-symbol" class="glyphicon glyphicon-remove"></i></button>
+        <button id='searchsubmit' class="btn btn-default" type="button"><i id="button-symbol" class="glyphicon glyphicon-search"></i></button>     
         </div>
         </div>
     <div id="attendeebtn_cont">    
@@ -235,7 +236,13 @@ function refreshTimer() {
     clearInterval(interval);
     interval = setInterval(refreshTimer, 120000);
 }    
-   
+
+    $('#searchclear').click(function(){
+       
+        $('#searchfield').val('');
+        
+    });
+    
 
     $('#submit_attn').click(function(){
    if(mode == "add"){
