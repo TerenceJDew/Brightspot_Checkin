@@ -679,7 +679,7 @@ else{
             var markupbuttons = "<th class='checkin_col'>Check-In</th><th class='edit_col'>Actions</th>"
             $("table thead tr").append(markupbuttons);
            // getAttendees(1);
-            getCheckIn();
+//            getCheckIn();
             
 
             } else {
@@ -1001,6 +1001,12 @@ else{
            
             if(currentpage != totalpages && totalpages != 0)
                 {
+                    
+                    if (currentpage == 1){
+                 
+                        getCheckIn();
+                    }
+                    
                     currentpage = currentpage + 1;
                     getAttendees(currentpage);   
                 }
@@ -1012,19 +1018,12 @@ else{
             $('#button-symbol').removeClass().addClass("glyphicon glyphicon-search");
         }
            
-            getCheckIn();
+            
         
         }
-        else {
-                
-            alert( "Sorry, but there was an error" );
-           
-        }
         
         
-        $('#modal_load').modal('hide');
-       
-        
+    
 }).fail(function(err) { 
         
         alert(JSON.stringify(err.responseJSON.errors).replace("{","").replace("}",""));    
