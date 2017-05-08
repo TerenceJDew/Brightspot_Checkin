@@ -910,6 +910,7 @@ else{
     });
 }    
 
+
 //Attendee Actions    
     function getAttendees(page_num) {
 
@@ -941,7 +942,7 @@ else{
         
   var post_code = serialize({
             app_id: window.localStorage.getItem("app_id"),
-            limit: 275,
+            limit: 500,
             session_id: window.localStorage.getItem("session_id"),
             page: currentpage
 });
@@ -1018,14 +1019,17 @@ else{
             
         });
            
-            if(currentpage != totalpages && totalpages != 0)
-                {
-                    
-                    currentpage = currentpage + 1;
-                    getAttendees(currentpage);   
-                }
-        else{
+//            if(currentpage != totalpages && totalpages != 0)
+//                {
+//                    
+//                    currentpage = currentpage + 1;
+//                    getAttendees(currentpage);   
+//                }
+//        else{
               if(totalpages == 0){
+                  
+//                  navigator.notification.alert(message, alertCallback, [title], [buttonName])
+                //  navigator.notification.alert("No Attendees Found",alertDismissed,Results,OK );
                   alert("No Attendees Found");
               }
             
@@ -1048,17 +1052,16 @@ else{
             
         }
             
-        }
+//        }
            
            
         
         }
-        
-        
+     
     
 }).fail(function(err) { 
         
-        alert(JSON.stringify(err.responseJSON.errors).replace("{","").replace("}",""));    
+        alert(JSON.stringify(err).replace("{","").replace("}",""));    
         
     });
        active_button = true;
