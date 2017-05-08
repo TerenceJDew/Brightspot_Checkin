@@ -162,7 +162,7 @@
     <div class="input-group search">
         <input type="text" id="searchfield" class="form-control" placeholder="Search" aria-describedby="basic-addon2">
          <div class="input-group-btn">
-        <button id='searchclear' class="btn btn-default" type="button"><i id="button-symbol" class="glyphicon glyphicon-remove"></i></button>
+        <button id='searchclear' class="btn btn-default" type="button"><i id="clear-symbol" class="glyphicon glyphicon-remove"></i></button>
         <button id='searchsubmit' class="btn btn-default" type="button"><i id="button-symbol" class="glyphicon glyphicon-search"></i></button>     
         </div>
         </div>
@@ -714,7 +714,7 @@ else{
             
             }
         
-            
+            getCheckIn();
                 
                 
                 
@@ -1034,7 +1034,7 @@ else{
             if(tablestate == "checkin"){
             $(".checkin_col").show(); 
             $(".edit_col").hide(); 
-            $(".mode_button").html('Check-In View'); 
+            $(".mode_button").html('Attendee View'); 
             //$("#table td:nth-child(4),th:nth-child(4)").hide();
           // $("#table td:nth-child(5),th:nth-child(5)").show();
         } 
@@ -1042,12 +1042,12 @@ else{
             tablestate = "checkin";
             $(".checkin_col").hide();
             $(".edit_col").show();
-            $(".mode_button").html('Attendee View'); 
+            $(".mode_button").html('Check-In View'); 
             //$("#table td:nth-child(4),th:nth-child(4)").show();
             //$("#table td:nth-child(5),th:nth-child(5)").hide();
             
         }
-            getCheckIn();
+            
         }
            
            
